@@ -54,10 +54,7 @@ class Theme {
 			return true;
 		}
 
-		$moduleName = 'themeloader.skins.' . $skin . '.' . $theme;
-		if ( $skin === 'monaco' ) {
-			$moduleName = 'skins.' . $skin . '.' . $theme;
-		}
+		$moduleName = "themeloader.skins.$skin.$theme";
 
 		if ( $resourceLoader->isModuleRegistered( $moduleName ) && $resourceLoader->getModule( $moduleName ) ) {
 			return true;

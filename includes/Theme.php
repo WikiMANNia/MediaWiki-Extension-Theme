@@ -26,14 +26,7 @@ class Theme {
 
 		$themes = ExtensionRegistry::getInstance()->getAttribute( 'ThemeModules' );
 
-		if ( !isset( $themes[$ourSkin] ) ) {
-			$themes[$ourSkin] = [];
-		}
-
-		// Ensure that 'default' is always the 1st array item
-		array_unshift( $themes[$ourSkin], 'default' );
-
-		return !empty( $themes[$ourSkin] ) ? $themes[$ourSkin] : [ 'default' => 'default' ];
+		return isset( $themes[$ourSkin] ) ? $themes[$ourSkin] : [];
 	}
 
 	/**

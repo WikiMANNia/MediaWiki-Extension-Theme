@@ -134,10 +134,16 @@ class Hooks implements
 			$themeArray_for_sort[$theme] = $themeDisplayName;
 		}
 
-		// Sort this list.
+		// Sort this list and add a default element.
 		asort( $themeArray_for_sort );
-
-		$themeArray = [];
+		$theme = 'default';
+		$themeDisplayNameMsg = $ctx->msg( "theme-name-$skin-$theme" );
+		$themeDisplayName = 
+			$themeDisplayNameMsg->isDisabled()
+			? ucfirst( $theme )
+			: $themeDisplayName = $themeDisplayNameMsg->text();
+		// Ensure that 'default' is always the 1st array item
+		$themeArray = [ $themeDisplayName => $theme ];
 
 		// Add the rest of the items.
 		foreach ( $themeArray_for_sort as $theme => $themeDisplayName ) {

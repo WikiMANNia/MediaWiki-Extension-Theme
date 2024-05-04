@@ -7,5 +7,6 @@
 		]
 	},
 	"theme-prefs-label": "Tema:",
-	"theme-desc": "Controla la instalación de variantes CSS de las apariencias de la wiki"
+	"theme-desc": "Controla la instalación de variantes CSS de las apariencias de la wiki",
+	"theme-livepreview-note": "Tenga en cuenta que sólo está previsualizando el tema de $1. Para que los cambios sean permanentes, pulse el botón \"Guardar\"."
 }

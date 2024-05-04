@@ -117,17 +117,30 @@ class Hooks implements
 		$themes = Theme::getAvailableThemes( $skin );
 		// Braindead code needed to make the theme *names* show up
 		// Without this they show up as "0", "1", etc. in the UI
-		$themeArray = [];
+		// First themes will be translated in i18n and then sorted.
+
+		// Get translated theme names
+		$themeArray_for_sort = [];
 		foreach ( $themes as $theme ) {
 			$themeDisplayNameMsg = $ctx->msg( "theme-name-$skin-$theme" );
 			if ( $themeDisplayNameMsg->isDisabled() ) {
 				// No i18n available for this -> use the key as-is
-				$themeDisplayName = $theme;
+				$themeDisplayName = ucfirst( $theme );
 			} else {
 				// Use i18n; it's much nicer to display formatted theme names if and when
 				// a theme name contains spaces, uppercase characters, etc.
 				$themeDisplayName = $themeDisplayNameMsg->text();
 			}
+			$themeArray_for_sort[$theme] = $themeDisplayName;
+		}
+
+		// Sort this list.
+		asort( $themeArray_for_sort );
+
+		$themeArray = [];
+
+		// Add the rest of the items.
+		foreach ( $themeArray_for_sort as $theme => $themeDisplayName ) {
 			$themeArray[$themeDisplayName] = $theme;
 		}
 

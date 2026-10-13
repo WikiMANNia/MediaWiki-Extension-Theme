@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\Theme;
 
-use ApiBase;
-use ApiMain;
-use ApiResult;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Languages\LanguageNameUtils;
 use SkinFactory;
 
@@ -19,11 +19,8 @@ use SkinFactory;
  */
 class ApiThemeList extends ApiBase {
 
-	/** @var SkinFactory */
-	private $skinFactory;
-
-	/** @var LanguageNameUtils */
-	private $languageNameUtils;
+	private SkinFactory $skinFactory;
+	private LanguageNameUtils $languageNameUtils;
 
 	/**
 	 * @param ApiMain $main
@@ -53,12 +50,16 @@ class ApiThemeList extends ApiBase {
 	 * @param string $property
 	 * @return bool
 	 */
-	public function appendThemes( $property = 'themes' ) {
+	private function appendThemes( $property = 'themes' ): bool {
 		$data = [];
 		$config = $this->getConfig();
 		$defaultTheme = $config->get( 'DefaultTheme' );
 		$defaultSkin = $config->get( 'DefaultSkin' );
-		$skinNames = $this->skinFactory->getSkinNames();
+		$skinNames =
+			method_exists( $this->skinFactory, 'getInstalledSkins' )
+			? $this->skinFactory->getInstalledSkins()
+			// @phan-suppress-next-line PhanUndeclaredMethod
+			: $this->skinFactory->getSkinNames();
 
 		foreach ( $skinNames as $skin => $displayName ) {
 			$themes = Theme::getAvailableThemes( $skin );
@@ -77,10 +78,7 @@ class ApiThemeList extends ApiBase {
 				} else {
 					$msg->inContentLanguage();
 				}
-				$themeDisplayName = $themeKey;
-				if ( $msg->exists() ) {
-					$themeDisplayName = $msg->text();
-				}
+				$themeDisplayName = $msg->exists() ? $msg->text() : $themeKey;
 				$theme = [ 'code' => $themeKey ];
 				ApiResult::setContentValue( $theme, 'name', $themeDisplayName );
 				if ( ( $themeKey === $defaultTheme ) && ( $skin === $defaultSkin ) ) {

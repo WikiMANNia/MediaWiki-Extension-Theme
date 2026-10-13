@@ -80,3 +80,8 @@ Version 2.5.1 - Oct 29, 2024
 
 Version (2.5.2) - Apr 24, 2025
 - Use namespaced PHP classes
+
+Version 3.0 - Oct 8, 2026
+- Add namespace
+- Add file ´Compat.php´
+- Add backward compatibility to REL1_35

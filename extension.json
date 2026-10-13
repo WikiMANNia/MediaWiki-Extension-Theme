@@ -1,7 +1,7 @@
 {
 	"name": "Theme",
 	"namemsg": "theme-extensionname",
-	"version": "2.5",
+	"version": "3.0",
 	"author": [
 		"Ryan Schmidt",
 		"Jack Phoenix",
@@ -17,6 +17,7 @@
 		"DefaultTheme": "default",
 		"SkipThemes": []
 	},
+	"callback": "MediaWiki\\Extension\\Theme\\Hooks::onRegistration",
 	"MessagesDirs": {
 		"Theme": [
 			"i18n"

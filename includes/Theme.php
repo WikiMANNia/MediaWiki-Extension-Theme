@@ -3,8 +3,8 @@
 namespace MediaWiki\Extension\Theme;
 
 use MediaWiki\MediaWikiServices;
-use ExtensionRegistry;
-use ResourceLoader;
+use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\ResourceLoader\ResourceLoader;
 
 /**
  * Utility/helper class.
@@ -21,7 +21,7 @@ class Theme {
 	 * @return array Array containing theme names for the skin or 'default' if
 	 *               the skin has no custom themes available
 	 */
-	public static function getAvailableThemes( $ourSkin ) {
+	public static function getAvailableThemes( string $ourSkin ): array {
 		// Paranoia
 		$ourSkin = strtolower( $ourSkin );
 
@@ -54,7 +54,7 @@ class Theme {
 	 * @param ResourceLoader $resourceLoader Reference to ResourceLoader
 	 * @return bool
 	 */
-	public static function skinHasTheme( $skin, $theme, &$resourceLoader ) {
+	public static function skinHasTheme( string $skin, string $theme, ResourceLoader $resourceLoader ): bool {
 		$skin = strtolower( $skin );
 		$theme = strtolower( $theme );
 
@@ -93,7 +93,7 @@ class Theme {
 	 * @param array $skins Array with all skin names (skin key -> i18ned/human-friendly name)
 	 * @return array Array containing skin names which supports themes
 	 */
-	public static function getSkinsWithThemes( $skins ) {
+	public static function getSkinsWithThemes( $skins ): array {
 		// We only want the internal values, not the potentially i18n'ed (or CamelCased or
 		// whatever), human-friendly names
 		$skins = array_keys( $skins );

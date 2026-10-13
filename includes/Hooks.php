@@ -7,15 +7,13 @@ use MediaWiki\Hook\OutputPageBodyAttributesHook;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 
-use Config;
-use IContextSource;
-use MediaWiki\User\UserOptionsLookup;
-use OutputPage;
-use RequestContext;
-use Sanitizer;
-use Skin;
+use MediaWiki\Context\RequestContext;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Skin\Skin;
+use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\User;
 use SkinFactory;
-use User;
 
 class Hooks implements
 	BeforePageDisplayHook,
@@ -23,11 +21,8 @@ class Hooks implements
 	OutputPageBodyAttributesHook,
 	ResourceLoaderGetConfigVarsHook
 {
-	/** @var SkinFactory */
-	private $skinFactory;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
+	private SkinFactory $skinFactory;
+	private UserOptionsLookup $userOptionsLookup;
 
 	/**
 	 * @param SkinFactory $skinFactory
@@ -40,6 +35,10 @@ class Hooks implements
 		$this->skinFactory = $skinFactory;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
+
+    public static function onRegistration() {
+        Compat::init();
+    }
 
 	/**
 	 * Add the JS needed to preview themes in real time onto the output
@@ -189,24 +188,24 @@ class Hooks implements
 	 * @param Config $config
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
+	public function onResourceLoaderGetConfigVars( array &$vars, $skin, $config ): void {
 		$vars['wgDefaultTheme'] = $config->get( 'DefaultTheme' );
 	}
 
 	/**
 	 * Detect the theme
 	 *
-	 * @param IContextSource $context
+	 * @param OutputPage $context
 	 * @return string Name of the theme
 	 */
-	private function getTheme( IContextSource $context ): string {
+	private function getTheme( OutputPage $context ): string {
 		// Check the following things in this order:
-		// 1) value of $wgDefaultTheme (set in site configuration)
+		// 1) per-page usetheme URL parameter
 		// 2) user's personal preference/override
-		// 3) per-page usetheme URL parameter
-		$theme = $context->getConfig()->get( 'DefaultTheme' );
-		$theme = $this->userOptionsLookup->getOption( $context->getUser(), 'theme', $theme );
-		$theme = $context->getRequest()->getRawVal( 'usetheme', $theme );
+		// 3) value of $wgDefaultTheme (set in site configuration)
+		$theme = $context->getRequest()->getRawVal( 'usetheme' )
+			?? $this->userOptionsLookup->getOption( $context->getUser(), 'theme' )
+			?? $context->getConfig()->get( 'DefaultTheme' );
 
 		// Support any case of the theme name.
 		$theme = strtolower( $theme );

@@ -1,7 +1,7 @@
 {
 	"name": "Theme",
 	"namemsg": "theme-extensionname",
-	"version": "2.3",
+	"version": "2.5",
 	"author": [
 		"Ryan Schmidt",
 		"Jack Phoenix",
@@ -14,7 +14,8 @@
 		"MediaWiki": ">= 1.35.0"
 	},
 	"config": {
-		"DefaultTheme": "default"
+		"DefaultTheme": "default",
+		"SkipThemes": []
 	},
 	"MessagesDirs": {
 		"Theme": [
@@ -29,7 +30,8 @@
 		"themelist": {
 			"class": "MediaWiki\\Extension\\Theme\\ApiThemeList",
 			"services": [
-				"SkinFactory"
+				"SkinFactory",
+				"LanguageNameUtils"
 			]
 		}
 	},

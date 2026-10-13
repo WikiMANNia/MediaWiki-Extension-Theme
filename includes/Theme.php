@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\Theme;
 
+use MediaWiki\MediaWikiServices;
 use ExtensionRegistry;
 use ResourceLoader;
 
@@ -14,7 +15,7 @@ use ResourceLoader;
 class Theme {
 
 	/**
-	 * Get all the themes the given skin has.
+	 * Get all the enabled themes the given skin has.
 	 *
 	 * @param string $ourSkin Skin name, e.g. aurora, monobook, vector, etc.
 	 * @return array Array containing theme names for the skin or 'default' if
@@ -33,15 +34,24 @@ class Theme {
 		// Ensure that 'default' is always the 1st array item
 		array_unshift( $themes[$ourSkin], 'default' );
 
+		// Filter out the themes defined in $wgSkipThemes for a skin, if any
+		$skipThemes = MediaWikiServices::getInstance()->getMainConfig()->get( 'SkipThemes' );
+		if ( !empty( $skipThemes[$ourSkin] ) ) {
+			foreach ( $skipThemes[$ourSkin] as $skippable ) {
+				unset( $themes[$ourSkin][$skippable] );
+			}
+		}
+
 		return !empty( $themes[$ourSkin] ) ? $themes[$ourSkin] : [ 'default' => 'default' ];
 	}
 
 	/**
-	 * Check if the given skin has a theme named $theme.
+	 * Check if the given skin has a theme named $theme and that it is usable
+	 * (i.e. NOT in the $wgSkipThemes configuration variable array).
 	 *
 	 * @param string $skin Skin name, e.g. aurora, monobook, vector, etc.
 	 * @param string $theme Theme name, e.g. dark, pink, etc.
-	 * @param ResourceLoader &$resourceLoader Reference to ResourceLoader
+	 * @param ResourceLoader $resourceLoader Reference to ResourceLoader
 	 * @return bool
 	 */
 	public static function skinHasTheme( $skin, $theme, &$resourceLoader ) {
@@ -52,6 +62,17 @@ class Theme {
 		// "the skin without any custom styling"
 		if ( $theme === 'default' ) {
 			return true;
+		}
+
+		$skipThemes = MediaWikiServices::getInstance()->getMainConfig()->get( 'SkipThemes' );
+		if ( !empty( $skipThemes[$skin] ) ) {
+			if (
+				isset( $skipThemes[$skin] ) && $skipThemes[$skin] &&
+				isset( $skipThemes[$skin][$theme] ) && $skipThemes[$skin][$theme]
+			) {
+				// This theme for this skin is explicitly disabled in the site's configuration.
+				return false;
+			}
 		}
 
 		$moduleName = 'themeloader.skins.' . $skin . '.' . $theme;

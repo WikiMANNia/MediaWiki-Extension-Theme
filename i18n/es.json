@@ -6,5 +6,6 @@
 			"Macofe"
 		]
 	},
+	"theme-prefs-label": "Tema:",
 	"theme-desc": "Controla la instalación de variantes CSS de las apariencias de la wiki"
 }

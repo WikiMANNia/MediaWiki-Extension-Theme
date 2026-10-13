@@ -2,18 +2,17 @@
 
 namespace MediaWiki\Extension\Theme;
 
-use MediaWiki\Config\Config;
-use MediaWiki\Context\IContextSource;
-use MediaWiki\Context\RequestContext;
-use MediaWiki\Output\Hook\BeforePageDisplayHook;
-use MediaWiki\Output\Hook\OutputPageBodyAttributesHook;
-use MediaWiki\Output\OutputPage;
-use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Hook\BeforePageDisplayHook;
+use MediaWiki\Hook\OutputPageBodyAttributesHook;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
+
+use MediaWiki\Context\RequestContext;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Skin\Skin;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
-use Skin;
 use SkinFactory;
 
 class Hooks implements
@@ -36,6 +35,10 @@ class Hooks implements
 		$this->skinFactory = $skinFactory;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
+
+    public static function onRegistration() {
+        Compat::init();
+    }
 
 	/**
 	 * Add the JS needed to preview themes in real time onto the output
@@ -126,9 +129,10 @@ class Hooks implements
 		}
 
 		$skinsWithThemes = Theme::getSkinsWithThemes(
-			method_exists( $this->skinFactory, 'getInstalledSkins' ) ?
-				// @phan-suppress-next-line PhanUndeclaredMethod
-				$this->skinFactory->getInstalledSkins() : $this->skinFactory->getSkinNames()
+			method_exists( $this->skinFactory, 'getInstalledSkins' )
+			// @phan-suppress-next-line PhanUndeclaredMethod
+			? $this->skinFactory->getInstalledSkins()
+			: $this->skinFactory->getSkinNames()
 		);
 		$showIf = [ 'OR' ];
 		foreach ( $skinsWithThemes as $skin ) {
@@ -184,17 +188,17 @@ class Hooks implements
 	 * @param Config $config
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
+	public function onResourceLoaderGetConfigVars( array &$vars, $skin, $config ): void {
 		$vars['wgDefaultTheme'] = $config->get( 'DefaultTheme' );
 	}
 
 	/**
 	 * Detect the theme
 	 *
-	 * @param IContextSource $context
+	 * @param OutputPage $context
 	 * @return string Name of the theme
 	 */
-	private function getTheme( IContextSource $context ): string {
+	private function getTheme( OutputPage $context ): string {
 		// Check the following things in this order:
 		// 1) per-page usetheme URL parameter
 		// 2) user's personal preference/override

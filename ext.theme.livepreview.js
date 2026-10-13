@@ -5,7 +5,7 @@
  * HT MatmaRex
  */
 ( function () {
-	const cache = Object.create( null );
+	var cache = Object.create( null );
 
 	/**
 	 * @param {string} theme Theme name
@@ -13,7 +13,7 @@
 	 */
 	function loadTheme( theme ) {
 		if ( !( theme in cache ) ) {
-			const skin = mw.config.get( 'skin' ),
+			var skin = mw.config.get( 'skin' ),
 				// @todo FIXME: When core-ifying this code again,
 				// remove this stupid special case hack
 				prefix = skin !== 'monaco' ? 'themeloader.' : '',
@@ -36,7 +36,7 @@
 		return cache[ theme ];
 	}
 
-	let deferred = null;
+	var deferred = null;
 
 	/**
 	 * @return {jQuery.Promise}
@@ -53,15 +53,17 @@
 				*/
 				action: 'themelist',
 				uselang: mw.config.get( 'wgUserLanguage' )
-			} ).then( ( data ) => data.query.themes );
+			} ).then( function ( data ) {
+				return data.query.themes;
+			} );
 		}
 		return deferred;
 	}
 
 	// This first handler listens to change to the *skin*, and when the skin is changed,
 	// it attempts to pull the list of themes for that skin (if any) via the API
-	mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
-		let skinWidget, themeWidget,
+	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+		var skinWidget, themeWidget,
 			$skin = $root.find( '#mw-input-wpskin' ),
 			$theme = $root.find( '#mw-input-wptheme' );
 
@@ -84,7 +86,7 @@
 		 * @return {OO.ui.MenuOptionWidget[]} Menu items
 		 */
 		function convertForOO( data ) {
-			let len, i, theme,
+			var len, i, theme,
 				items = [];
 
 			for ( i = 0, len = data.length; i < len; i++ ) {
@@ -102,7 +104,7 @@
 		 * @param {string} value Skin name, e.g. "monobook", "vector", etc.
 		 */
 		function updateLabel( value ) {
-			getThemes().done( ( themes ) => {
+			getThemes().done( function ( themes ) {
 				if ( themes[ value ] ) {
 					// Update the theme drop-down menu with the themes for this skin
 					themeWidget.dropdownWidget.menu.clearItems();
@@ -117,7 +119,7 @@
 	} );
 
 	// Main theme live preview code starts here
-	mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
+	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		/*
 		 * We need to load the CSS without ResourceLoader because RL refuses
 		 * to load the same module twice, but we essentially need that functionality
@@ -129,7 +131,7 @@
 		 * See https://lists.wikimedia.org/pipermail/wikitech-l/2017-June/088363.html
 		 * for more info.
 		 */
-		let widget, lastChosenValue,
+		var widget, lastChosenValue,
 			// Currently loaded theme.
 			themeLoaded = null,
 			themeStyle = document.getElementById( 'mw-themeloader-module' ),
@@ -177,10 +179,6 @@
 				$target.after( $previewNote );
 			}
 
-			if ( chosenValue === themeLoaded ) {
-				return;
-			}
-
 			if ( chosenValue === 'default' ) {
 				// Remove the theme `<link>` or `<style>` element from `<head>`.
 				if ( themeStyle ) {
@@ -188,12 +186,12 @@
 					themeStyle = null;
 				}
 				themeLoaded = null;
-				// No need to load anything if we chose 'default'.
+				// No need to load anything if we chose 'default'
 				return;
 			}
 
 			// Load the module via AJAX with a promise cache
-			loadTheme( chosenValue ).done( ( css ) => {
+			loadTheme( chosenValue ).done( function ( css ) {
 				// Check if the chosen theme is still the last chosen theme.
 				// This fails if the drop down menu gets changed while the theme is loading.
 				if ( chosenValue === lastChosenValue ) {

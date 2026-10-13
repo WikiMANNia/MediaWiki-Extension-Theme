@@ -10,17 +10,17 @@ El mantenimiento de esta bifurcación de la extensión de MediaWiki [Theme](http
 
 Die Erweiterung unterstützt Themen, sie wird von themen-unterstützenden Skins verwendet.
 
-- Dem Skin ´monobook´ werden die Themen ´dark´, ´pink´ und ´stellarbook´ bereitgestellt.
+- Dem Skin ´monobook´ werden die Themen ´dark´, ´pink´, ´stellarbook´ und ´wipi´ bereitgestellt.
 - Dem Skin ´vector´ werden die Themen ´dark´ und ´dark-grey´ bereitgestellt.
 
 The extension supports themes and is used by theme-supporting skins.
 
-- The skin ´monobook´ will be provided with the themes ´dark´, ´pink´, and ´stellarbook´.
+- The skin ´monobook´ will be provided with the themes ´dark´, ´pink´, ´stellarbook´, and ´wipi´.
 - The skin ´vector´ will be provided with the themes ´dark´ and ´dark-grey´.
 
 La extensión admite temas y es utilizada por las apariencias que los admiten.
 
-- El tema visual ´monobook´ incluirá los temas ´dark´, ´pink´ y ´stellarbook´.
+- El tema visual ´monobook´ incluirá los temas ´dark´, ´pink´, ´stellarbook´ y ´wipi´.
 - El tema visual ´vector´ incluirá los temas ´dark´ y ´dark-grey´.
 
 ## Configuration
@@ -85,3 +85,6 @@ Version 3.0 - Oct 8, 2026
 - Add namespace
 - Add file ´Compat.php´
 - Add backward compatibility to REL1_35
+
+Version 3.1 - Oct 13, 2026
+- Add theme ´wipi´

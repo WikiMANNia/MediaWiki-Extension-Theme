@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+	width="4" height="4"
+	viewBox="-56.5685 -56.5685 113.137 113.137">
+<g transform="rotate(-45)">
+	<rect x="-80" y="-80" width="160" height="160" fill="#4B1E1E"/>
+	<rect x="-80" y="-70" width="160" height="60" fill="#361111"/>
+	<rect x="-80" y="10" width="160" height="60" fill="#361111"/>
+</g>
+</svg>

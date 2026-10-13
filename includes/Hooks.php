@@ -4,6 +4,18 @@ namespace MediaWiki\Extension\Theme;
 
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\OutputPageBodyAttributesHook;
+
+/**
+ * Compatibility note:
+ * The hook interfaces were moved to MediaWiki\Output\Hook in MW 1.42.
+ * The old MediaWiki\Hook names remain available as deprecated aliases.
+ * Tested with MW 1.35, 1.39, 1.43, 1.45 and 1.47.0-alpha.
+ * Keep the old imports until the aliases are removed from MediaWiki core.
+ *
+ * - use MediaWiki\Output\Hook\BeforePageDisplayHook;
+ *  -use MediaWiki\Output\Hook\OutputPageBodyAttributesHook;
+*/
+
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 

@@ -43,7 +43,7 @@ Excluir los siguientes temas:
 
 ## Compatibility
 
-This extension has been tested with MediaWiki versions `1.39.17`, `1.43.9`, `1.45.4`, and `1.47.0-alpha`.
+This extension has been tested with MediaWiki versions `1.35.14`, `1.39.17`, `1.43.9`, `1.45.4`, and `1.47.0-alpha`.
 
 The extension is expected to work with MediaWiki 1.36–1.38, but these versions are not currently tested.
 
@@ -73,30 +73,6 @@ $wgSkipThemes = [
 	]
 ];´
 - If you wanted to disable the StellarBook MonoBook and dark Vector themes, for example.
-
-Version 2.3 - Jan 29, 2023
-- Remove DeepSea Vector theme
-- It's broken in MW 1.39(+) and needs significantly more love than the other themes.
-
-Version 2.4 - May 9, 2024
-- Use namespaced PHP class ResourceLoader
-- This change requires MediaWiki 1.39+.
-
-Version 2.5 - Jul 5, 2024
-- Add $wgSkipThemes to allow sysadmins to disable certain skins' certain themes
-- Lightly tested with a few skins and themes and seems to work on any and all remotely sane, FOSS skins.
-- Does not currently work with ShoutWiki's forks of the old Wikia Quartz and Monaco skins.
-- Quartz is a trickier case, but for Monaco it *seems* (again, based on very little testing) that theme-related code needs to be removed from SkinMonaco#initPage and that's it.
-´$wgSkipThemes is an array that looks like this:
-$wgSkipThemes = [
-	'monobook' => [
-		'stellarbook' => true
-	],
-	'vector' => [
-		'dark' => true
-	]
-];´
-- If you wanted to disable the ´StellarBook MonoBook´ and ´dark Vector´ themes, for example.
 
 Version 2.5.1 - Oct 29, 2024
 - Future-proofing

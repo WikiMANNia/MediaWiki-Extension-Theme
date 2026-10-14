@@ -8,24 +8,94 @@
 ** would overwrite our styles defined here.
 */
 .mw-body {
-	background: #000;
+	background-color: #000;
 	border: solid 1px #aaa;
 	color: #fff;
 	margin-left: 12.5em;
 	margin-right: 1em;
 	padding-top: 0;
 }
+.mw-body a.extiw,
+.mw-body a.extiw:active {
+	color: #36b;
+}
+.mw-body a.extiw:visited {
+	color: #636;
+}
+.mw-body a.extiw:active {
+	color: #b63;
+}
+.mw-body a.external {
+	color: #36b;
+}
+.mw-body a.external:visited {
+	color: #636	 ;
+}
+.mw-body a.external:active {
+	color: #b63;
+}
 
 #bodyContent {
 	padding: 0 6em 0 4em;
 }
+#bodyContent h1,
+#bodyContent h2 {
+	margin-bottom:0.6em
+}
+#bodyContent h3,
+#bodyContent h4,
+#bodyContent h5 {
+	margin-bottom:0.3em
+}
+#bodyContent a.extiw,
+#bodyContent a.extiw:active {
+	color:#3366bb;
+	background-color:none;
+	padding:0
+}
+#bodyContent a.external {
+	color:#A4E0FF;
+	color:#3ba5db
+}
+#bodyContent .plainlinks a {
+	background-color:none !important;
+	padding:0
+}
+.firstHeading {
+	margin-bottom:0.1em
+}
 
 body {
-	background: #000 url( "wipi/headbg.svg" );
+	color: #fff;
+	background: #000 url( wipi/page_bg.png ) repeat-x fixed bottom !important;
+	background: linear-gradient( transparent, transparent ),
+		url( wipi/page_bg.png ) repeat-x fixed bottom, #000 !important;
+	font: x-small sans-serif;
+	margin: 0;
+	padding: 0;
 }
 
 #p-logo {
-	background: transparent;
+	background-color: transparent;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 155px;
+	width: 12em;
+	overflow: visible;
+	z-index: 3;
+}
+#p-logo h5 {
+	display: none;
+}
+#p-logo a,
+#p-logo a:hover {
+	display: block;
+	height: 155px;
+	width: 12.2em;
+	background-repeat: no-repeat;
+	background-position: 35% 50% !important;
+	text-decoration: none;
 }
 
 /**
@@ -33,19 +103,21 @@ body {
  */
 #globalWrapper {
 	background-image: none;
+	min-width:0 !important;
+	width:100% !important;
 }
 
 /* general styles */
 table {
 	font-size: 100%;
-	background: #000;
+	background-color: #000;
 	color: #fff;
 }
 
 body a {
 	text-decoration: none;
 	color: #CACAF7;
-	background: none;
+	background-color: none;
 }
 
 body a:visited {
@@ -89,6 +161,145 @@ body h5,
 body h6 {
 	color: #fff;
 }
+p {
+	margin: 0.4em 0 0.5em 0;
+	line-height: 1.5em;
+}
+p img {
+	margin: 0;
+}
+img {
+	border: none;
+	vertical-align: middle;
+}
+hr {
+	background-color: #000060;
+	border: 0;
+	color: #aaa;
+	height: 1px;
+	margin: 0.2em 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #fff;
+	background-color: none;
+	font-weight: normal;
+	margin: 0;
+	padding-top: 0.5em;
+	padding-bottom: 0.17em;
+	border-bottom: 1px solid #aaa;
+}
+h1 {
+	font-size: 188%;
+}
+h2 {
+	font-size: 150%;
+}
+h3,
+h4,
+h5,
+h6 {
+	border-bottom: none;
+	font-weight: bold;
+}
+h3 {
+	font-size: 132%;
+}
+h4 {
+	font-size: 116%;
+}
+h5 {
+	font-size: 100%;
+}
+h6 {
+	font-size: 80%;
+}
+ul {
+	line-height: 1.5em;
+	list-style-type: square;
+	margin: 0.3em 0 0 1.5em;
+	padding: 0;
+	list-style-image:url( wipi/bullet.png );
+}
+ol {
+	line-height: 1.5em;
+	margin: 0.3em 0 0 3.2em;
+	padding: 0;
+	list-style-image: none;
+}
+li {
+	margin-bottom: 0.1em;
+}
+dt {
+	font-weight: bold;
+	margin-bottom: 0.1em;
+}
+dl {
+	margin-top: 0.2em;
+	margin-bottom: 0.5em;
+}
+dd {
+	line-height: 1.5em;
+	margin-left: 2em;
+	margin-bottom: 0.1em;
+}
+fieldset {
+	border: 1px solid #2f6fab;
+	margin: 1em 0 1em 0;
+	padding: 0 1em 1em 1em;
+	line-height: 1.5em;
+}
+legend {
+	background-color: #000060;
+	padding: 0.5em;
+	font-size: 95%;
+}
+form {
+	border: none;
+	margin: 0
+}
+textarea {
+	color: #fff;
+	background-color: #000060;
+	width: 100%;
+	padding: 0.1em;
+}
+input.historysubmit {
+	padding: 0 0.3em 0.3em 0.3em !important;
+	font-size: 94%;
+	cursor: pointer;
+	height: 1.7em !important;
+	margin-left: 1.6em;
+}
+select {
+	vertical-align: top;
+}
+abbr,
+acronym,
+.explain {
+	border-bottom: 1px dotted #000;
+	color: #000;
+	background-color: none;
+	cursor: help;
+}
+q {
+	font-family: Times,"Times New Roman",serif;
+	font-style: italic;
+}
+code {
+	background-color: #000060 ;
+}
+pre {
+	padding: 1em;
+	border: 1px dashed #2f6fab;
+	color: #fff;
+	background-color: #000060;
+	line-height: 1.1em;
+}
 
 body h5 {
 	font-size: 100%;
@@ -107,13 +318,13 @@ dd {
 }
 
 legend {
-	background: #313439;
+	background-color: #313439;
 }
 
 abbr,
 acronym,
 .explain {
-	background: none;
+	background-color: none;
 	border-bottom: 1px dotted #000;
 	color: #000;
 }
@@ -199,8 +410,13 @@ body .toctogglelabel {
 }
 
 /* Page history styling */
+body #pagehistory li {
+	background-color: #000060 !important;
+	border: 1px dashed #aaa;
+}
 body #pagehistory li.selected {
-	background-color: #404043;
+	background-color: #000060 !important;
+	border:1px solid #fff;
 }
 /* text color for the currently selected row */
 body #pagehistory li.selected span:not( .mw-plusminus-pos ):not( .mw-plusminus-neg ) {
@@ -210,6 +426,13 @@ body #pagehistory li.selected span:not( .mw-plusminus-pos ):not( .mw-plusminus-n
 body #pagehistory li abbr {
 	color: #fff;
 }
+body #pagehistory span.user {
+	margin-left: 1.4em;
+	margin-right: 0.4em;
+}
+body #pagehistory span.minor {
+	font-weight: bold;
+}
 
 /*
 ** Diff rendering
@@ -217,25 +440,25 @@ body #pagehistory li abbr {
 table.diff,
 td.diff-otitle,
 td.diff-ntitle {
-	background-color: #404043;
+	background-color: #000060;
 }
 
 td.diff-addedline {
-	background: rgb( 0, 100, 0 );
+	background-color :#0010A0;
 	font-size: smaller;
 }
 
 td.diff-addedline .diffchange {
-	background: transparent !important;
+	background-color: transparent !important;
 }
 
 td.diff-deletedline {
-	background: #bc8f29;
+	background-color: #000060;
 	font-size: smaller;
 }
 
 td.diff-context {
-	background: #404043;
+	background-color: #404040;
 	color: #fff;
 	font-size: smaller;
 }
@@ -245,37 +468,35 @@ span.diffchange {
 	font-weight: bold;
 }
 
+td.diff-otitle,
+td.diff-ntitle {
+	background-color: #000060;
+}
+
 /*
 ** keep the whitespace in front of the ^=, hides rule from Konqueror
 ** this is CSS3, the validator doesn't like it when validating as CSS2
 */
-#bodyContent a.external[href ^="https://"],
-.link-https {
-	/* @embed */
-	background-image: url( stellarbook/lock_icon.png );
-	padding-right: 18px;
-}
-
 #bodyContent a.external[ href^='mailto:' ],
 .link-mailto {
 	/* @embed */
-	background-image: url( stellarbook/mail_icon.png );
+	background-image: url( wipi/mail_icon.png );
 }
 
 #bodyContent a.external[ href^='news:' ] {
 	/* @embed */
-	background-image: url( stellarbook/news_icon.png );
+	background-image: url( wipi/news_icon.png );
 }
 #bodyContent a.external[href ^="ftp://"],
 .link-ftp {
 	/* @embed */
-	background-image: url( stellarbook/file_icon.gif );
+	background-image: url( wipi/file_icon.gif );
 }
 #bodyContent a.external[href ^="irc://"],
 #bodyContent a.external[href ^="ircs://"],
 .link-irc {
 	/* @embed */
-	background-image: url( stellarbook/discussionitem_icon.png );
+	background-image: url( wipi/discussionitem_icon.png );
 }
 
 #bodyContent a.external[ href$='.ogg' ],
@@ -292,7 +513,7 @@ span.diffchange {
 #bodyContent a.external[ href$='.WMA' ],
 .link-audio {
 	/* @embed */
-	background-image: url( stellarbook/audio.png );
+	background-image: url( wipi/audio.png );
 }
 
 #bodyContent a.external[ href$='.ogm' ],
@@ -305,7 +526,7 @@ span.diffchange {
 #bodyContent a.external[ href$='.MPG' ],
 .link-video {
 	/* @embed */
-	background-image: url( stellarbook/video.png );
+	background-image: url( wipi/video.png );
 }
 
 /* Interwiki styling */
@@ -321,8 +542,15 @@ span.diffchange {
 /*
 ** general portlet styles (elements in the quickbar)
 */
+body .portlet {
+	border: none;
+	margin: 0 0 0.5em 0em;
+	float: none;
+	padding: 0;
+	overflow: hidden;
+}
 body .portlet h3 {
-	background: #000060;
+	background-color: #000060;
 	padding: 0 1em 0 0.5em;
 	display: inline;
 	height: 1em;
@@ -331,15 +559,23 @@ body .portlet h3 {
 	font-weight: bold;
 	white-space: nowrap;
 }
-
 body .portlet h4 {
 	font-size: 95%;
 	font-weight: normal;
 	white-space: nowrap;
 }
-
+body .portlet h5 {
+	background-color: #000060;
+	padding: 0em 1em 0em 0.5em;
+	text-transform: lowercase;
+	display: inline;
+	font-size: 91%;
+	height: 1em;
+	font-weight: normal;
+	white-space: nowrap;
+}
 body .portlet h6 {
-	background: #ffae2e;
+	background-color: #000060;
 	border: 1px solid #2f6fab;
 	border-style: solid solid none solid;
 	padding: 0 1em 0 1em;
@@ -354,7 +590,7 @@ body .portlet h6 {
 body .portlet ul {
   line-height: 1.5em;
   list-style-type: square;
-  list-style-image: url("monobook/bullet.png");
+  list-style-image: url( wipi/bullet.png );
   font-size: 95%;
 }
 
@@ -362,8 +598,10 @@ body.skin--responsive .pBody, /* MW 1.39+ */
 body .pBody, /* MW 1.35(-1.38?) */
 body.skin--responsive .mw-portlet > div, body.skin--responsive .pBody /* MW 1.43+ */ {
 	background-color: #000060;
-	border: none;
-	color: #CACAF7;
+	border-collapse: collapse;
+	border: 1px solid #aaa;
+	font-size: 95%;
+	padding: 0 0.8em 0.3em 0.5em
 }
 
 /*
@@ -389,7 +627,7 @@ body #p-personal li a {
 body.skin--responsive #p-cactions li,
 body #p-cactions li {
 	display: inline;
-	background: #fff;
+	background-color: #fff;
 	border: 1px solid #aaa;
 	border-bottom: none;
 	margin: 0 0.3em 0 0;
@@ -428,9 +666,13 @@ body #p-cactions li a:hover {
 	font-size: 90%;
 	border-top: 1px solid #fabd23;
 	border-bottom: 1px solid #fabd23;
-	margin: 0.6em 0em 1em 0em;
-	padding: 0.4em 0em 1.2em 0em;
+	margin: 0.6em 0 1em 0;
+	padding: 0.4em 0 1.2em 0;
 	text-align: center;
+}
+#footer li {
+	display: inline;
+	margin: 0 1.3em;
 }
 
 /* Gallery stuff -- no idea if this is needed -- @todo FIXME/CHECKME */
@@ -516,12 +758,12 @@ table.mw-datatable th {
 
 /* Navigation arrows */
 table.TablePager_nav {
-	background: transparent;
+	background-color: transparent;
 }
 
 /* Special:AllMessages */
 table.mw-allmessages-table {
-	background: transparent;
+	background-color: transparent;
 }
 
 /* Special:RecentChanges - the collapsible box explaining the acronyms */
@@ -674,16 +916,47 @@ div.view-poll-navigation h2 {
   }
 }
 @media screen {
-  .wikitable > tr > th, .wikitable > * > tr > th {
-    background-color: #000 !important; /* original: #eaecf0 */
-    color: #fff !important; /* original: #000 */
+  .wikitable > tr > th,
+  .wikitable > * > tr > th {
+    background-color: #fff !important; /* original: #eaecf0 */
+	font-weight: bold;
     text-align: center;
   }
 }
 @media screen {
-  .wikitable > tr > th, .wikitable > tr > td, .wikitable > * > tr > th, .wikitable > * > tr > td {
+  .wikitable > tr > th,
+  .wikitable > tr > td,
+  .wikitable > * > tr > th,
+  .wikitable > * > tr > td {
     border: 1px solid #aaa; /* original: #aaa */
-    padding: 0.2em 0.4em;
+    padding: 0.2em 0.3em;
+  }
+}
+@media screen {
+  .wikitable > tr > td,
+  .wikitable > * > tr > td {
+    color: #000 !important; /* original: #000 */
+  }
+}
+@media screen {
+  table.wikitable,
+  table.mw_metadata {
+    margin: 1em 1em 1em 0;
+    border: 1px #aaa solid;
+    background-color: white;
+    border-collapse: collapse;
+  }
+}
+@media screen {
+  table.wikitable > caption {
+	font-weight: bold;
+  }
+}
+@media screen {
+  .wikitable,
+  .thumb,
+  img {
+	page-break-inside:avoid
   }
 }
 

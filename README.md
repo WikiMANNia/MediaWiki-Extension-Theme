@@ -45,8 +45,6 @@ Excluir los siguientes temas:
 
 This extension has been tested with MediaWiki versions `1.35.14`, `1.39.17`, `1.43.9`, `1.45.4`, and `1.47.0-alpha`.
 
-The extension is expected to work with MediaWiki 1.36–1.38, but these versions are not currently tested.
-
 ## Version history
 
 Version 2.3 - Jan 29, 2023

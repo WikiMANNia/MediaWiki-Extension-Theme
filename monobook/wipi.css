@@ -116,12 +116,12 @@ table {
 
 body a {
 	text-decoration: none;
-	color: #CACAF7;
+	color: #cacaf7;
 	background-color: none;
 }
 
 body a:visited {
-	color: #E2F3FF;
+	color: #e2f3ff;
 }
 
 body a:active {
@@ -884,11 +884,11 @@ div.view-poll-navigation h2 {
 
 @media screen {
   .oo-ui-tabSelectWidget-framed {
-    background-color: #CACAF7 !important; /* original: #eee */
+    background-color: #cacaf7 !important; /* original: #eee */
     box-shadow: none;
   }
   .oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget-selected {
-   background-color: #000060 !important; /* original: #fff */
+    background-color: #000060 !important; /* original: #fff */
     color: #fff; /* original: #000 */
   }
   .oo-ui-panelLayout-framed {
@@ -901,6 +901,9 @@ div.view-poll-navigation h2 {
   .oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-fieldsetLayout-header {
     color: #fff; /* original: #000 */
   }
+  .oo-ui-tabSelectWidget-framed:hover .oo-ui-tabOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget-selected:hover {
+    color: #cacaf7; /* original: #fff */
+  }
 }
 
 .infobox {
@@ -910,9 +913,10 @@ div.view-poll-navigation h2 {
 }
 @media screen {
   .wikitable {
-    color: #CACAF7 !important; /* original: #000 */
-    border-collapse: collapse;
-    text-align: center; /* original: center */
+	background: #fff;
+	border: 1px #aaa solid;
+	border-collapse: collapse;
+	margin: 1em 1em 1em 0;
   }
 }
 @media screen {

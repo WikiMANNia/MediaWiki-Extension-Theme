@@ -36,10 +36,14 @@ class Theme {
 
 		// Filter out the themes defined in $wgSkipThemes for a skin, if any
 		$skipThemes = MediaWikiServices::getInstance()->getMainConfig()->get( 'SkipThemes' );
-		if ( !empty( $skipThemes[$ourSkin] ) ) {
-			foreach ( $skipThemes[$ourSkin] as $skippable ) {
-				unset( $themes[$ourSkin][$skippable] );
+		if ( is_array( $skipThemes ) ) {
+			if ( !empty( $skipThemes[$ourSkin] ) ) {
+				foreach ( $skipThemes[$ourSkin] as $skippable ) {
+					unset( $themes[$ourSkin][$skippable] );
+				}
 			}
+		} else {
+			throw new InvalidArgumentException( "Theme extension has a configuration error: 'SkipThemes' is not an array." );
 		}
 
 		return !empty( $themes[$ourSkin] ) ? $themes[$ourSkin] : [ 'default' => 'default' ];

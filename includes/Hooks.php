@@ -116,10 +116,13 @@ class Hooks implements
 		// Without this they show up as "0", "1", etc. in the UI
 		$themeArray = [];
 		foreach ( $themes as $theme ) {
-			$themeDisplayNameMsg = $ctx->msg( "theme-name-$skin-$theme" );
+			$themeDisplayNameMsg =
+				( $theme === 'default' )
+				? $ctx->msg( "theme-name-default" )
+				: $ctx->msg( "theme-name-$skin-$theme" );
 			if ( $themeDisplayNameMsg->isDisabled() ) {
 				// No i18n available for this -> use the key as-is
-				$themeDisplayName = $theme;
+				$themeDisplayName = ucfirst( $theme );
 			} else {
 				// Use i18n; it's much nicer to display formatted theme names if and when
 				// a theme name contains spaces, uppercase characters, etc.

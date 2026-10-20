@@ -11,5 +11,14 @@
 	"theme-prefs-label": "Thema:",
 	"theme-livepreview-note": "Beachte, dass du das Thema $1 nur vorschaust. Um die Änderungen dauerhaft zu machen, drücke unten auf die Schaltfläche „Speichern“.",
 	"theme-unsupported-skin": "Diese Benutzeroberfläche, die du entweder gerade verwendest oder zur Aktivierung ausgewählt hast, unterstützt keine Themen. Bitte verwende eine andere Benutzeroberfläche, wenn du ein Nicht-Standard-Thema verwenden möchtest.",
-	"theme-desc": "Steuert die Installation von CSS-Varianten der Benutzeroberflächen des Wikis"
+	"theme-desc": "Steuert die Installation von CSS-Varianten der Benutzeroberflächen des Wikis",
+	"theme-name-monobook-dark": "Dunkel",
+	"theme-name-monobook-pink": "Rosa",
+	"theme-name-monobook-saw": "Spanking Art Wiki",
+	"theme-name-monobook-stellarbook": "Sternenbuch",
+	"theme-name-vector-dark": "Dunkel",
+	"theme-name-vector-dark-grey": "Dunkelgrau",
+	"theme-name-vector-deepsea": "Tiefsee",
+	"theme-name-vector-saw": "Spanking Art Wiki",
+	"theme-name-default": "voreingestellt"
 }

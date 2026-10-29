@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="660"
+   height="660"
+   viewBox="0 0 660 660"
+   id="svg6"
+   sodipodi:docname="logo-icon-neu.svg"
+   inkscape:version="1.4.3 (0d15f750, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:svg="http://www.w3.org/2000/svg">
+	<defs
+		id="defs1">
+		<path id="triangle"
+			d="m -1000,577 h 2000 l -1000,-1732 z" />
+		<path id="line"
+			d="m -700,577 h 700" />
+		<g id="line_fragments">
+			<use xlink:href="#line" transform="rotate(0)"/>
+			<use xlink:href="#line" transform="rotate(120)"/>
+			<use xlink:href="#line" transform="rotate(-120)"/>
+		</g>
+    <use
+       id="triangle_2"
+       xlink:href="#triangle"
+       transform="rotate(60)"/>
+    <path
+       id="triangle2"
+       d="m -100,58 h 200 l -100,-173 z" />
+    <path
+       id="triangle2a"
+       d="m -100,58 h 200 l -150,-86.5 z" />
+    <path
+       id="triangle2b"
+       d="m -100,58 h 200 l -50,-86.5 z" />
+    <path
+       id="triangle1"
+       d="m -100,-58 h 200 l -100,173 z" />
+    <path
+       id="triangle1a"
+       d="m -100,-58 h 200 l -150,86.5 z" />
+    <path
+       id="triangle1b"
+       d="m -100,-58 h 200 l -50,86.5 z" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.45"
+     inkscape:cx="277.77778"
+     inkscape:cy="264.44444"
+     inkscape:window-width="1367"
+     inkscape:window-height="823"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg6" />
+  <title
+     id="title1">Logo Jewiki</title>
+    <rect width="660" height="660" style="fill:yellow;stroke:none"/>
+    <rect width="260" height="260" style="fill:cyan;stroke:none"/>
+    <rect width="260" height="130" style="fill:none;stroke:black;stroke-width:2px"/>
+  <g
+     id="star"
+     transform="matrix(0.035,0,0,-0.035,136,480)"
+     style="fill:none;stroke:#0F45A5;stroke-width:800px">
+    <path
+       id="path1"
+       d="M -1,3200 H 11087 L 5561,12772 Z" />
+    <path
+       id="path2"
+     style="fill:none;stroke:#fff;stroke-width:1100px"
+       d="M 9,9583 5546,1 11091,9583 Z" />
+    <path
+       id="path2"
+       d="M 9,9583 5546,1 11091,9583 Z" />
+  </g>
+  <g
+     id="star"
+     transform="matrix(0.035,0,0,-0.035,136,480)"
+     style="display:none;fill:#0F45A5;stroke:white;stroke-width:2px">
+    <path
+       d="M4599 9172 l-246 -427 2620 -3 c2088 -2 2618 -5 2614 -15 -3 -6 -176 -309 -386 -671 l-381 -660 81 -140 c45 -78 156 -270 247 -428 91 -159 168 -288 171 -288 3 1 393 672 866 1492 473 820 870 1508 883 1529 l23 39 -3123 0 -3123 -1 -246 -427z"
+       id="path3" />
+    <path
+       d="M6980 8595 c0 -3 67 -121 149 -263 1219 -2109 2461 -4262 2461 -4267 0 -3 -348 -5 -773 -5 l-774 0 -246 -427 -247 -428 885 -3 c487 -1 1283 -1 1769 0 l883 3 -1019 1765 c-561 971 -1262 2184 -1557 2695 l-537 930 -497 3 c-273 1 -497 0 -497 -3z"
+       id="path4" />
+    <path
+       d="M905 4768 c-473 -820 -870 -1508 -883 -1529 l-23 -39 3123 0 3123 1 246 427 246 427 -2620 3 c-2088 2 -2618 5 -2614 15 3 6 176 309 386 671 l381 660 -98 170 c-309 537 -396 686 -401 686 -3 -1 -393 -672 -866 -1492z"
+       id="path5" />
+  </g>
+    <g id="path-A"
+		style="fill:none;stroke:#0F45A5;stroke-width:160px"
+		transform="translate(330,256)scale(.19)">
+		<use xlink:href="#triangle" style="stroke:magenta;stroke-width:220px"/>
+		<use xlink:href="#triangle"/>
+		<g id="path-B"
+			transform="rotate(60)">
+			<use xlink:href="#triangle" style="stroke:magenta;stroke-width:220px"/>
+			<use xlink:href="#triangle"/>
+		</g>
+		<use xlink:href="#line_fragments" style="fill:none;stroke:magenta;stroke-width:220px"/>
+		<use xlink:href="#line_fragments" style="fill:none;stroke:#0F45A5;stroke-width:160px"/>
+	</g>
+    <g id="path-A290">
+		<use xlink:href="#triangle2"
+		style="fill:none;stroke:#ff0;stroke-width:4px"
+		transform="translate(130,130)"/>
+		<use xlink:href="#triangle2a"
+		style="fill:none;stroke:#000;stroke-width:2px"
+		transform="translate(130,130)"/>
+		<use xlink:href="#triangle2b"
+		style="fill:none;stroke:#000;stroke-width:2px"
+		transform="translate(130,130)"/>
+		<use xlink:href="#triangle1"
+		style="fill:none;stroke:#ff0;stroke-width:4px"
+		transform="translate(130,130)"/>
+		<use xlink:href="#triangle1a"
+		style="fill:none;stroke:#000;stroke-width:2px"
+		transform="translate(130,130)"/>
+		<use xlink:href="#triangle1b"
+		style="fill:none;stroke:#000;stroke-width:2px"
+		transform="translate(130,130)"/>
+	</g>
+  <text
+     id="text"
+     style="fill:#0F45A5;font-size:220px;font-variant:small-caps;text-anchor:middle"
+     x="330"
+     y="630">Jewiki</text>
+</svg>

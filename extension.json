@@ -1,7 +1,7 @@
 {
 	"name": "Theme",
 	"namemsg": "theme-extensionname",
-	"version": "3.2",
+	"version": "3.3",
 	"author": [
 		"Ryan Schmidt",
 		"Jack Phoenix",
@@ -24,8 +24,9 @@
 		]
 	},
 	"ThemeModules": {
-		"monobook": [ "dark", "pink", "stellarbook", "wipi" ],
-		"vector": [ "dark", "dark-grey", "deepsea" ]
+		"cologneblue": [ "partybook" ],
+		"monobook": [ "dark", "jewiki", "pink", "saw", "stellarbook", "wipi" ],
+		"vector": [ "dark", "dark-grey", "deepsea", "jewiki", "saw" ]
 	},
 	"APIModules": {
 		"themelist": {
@@ -50,6 +51,13 @@
 			],
 			"messages": [ "theme-livepreview-note" ]
 		},
+		"themeloader.skins.cologneblue.partybook": {
+			"styles": {
+				"cologneblue/partybook.css": {
+					"media": "screen"
+				}
+			}
+		},
 		"themeloader.skins.monobook.dark": {
 			"styles": {
 				"monobook/dark.css": {
@@ -63,9 +71,23 @@
 				}
 			}
 		},
+		"themeloader.skins.monobook.jewiki": {
+			"styles": {
+				"monobook/jewiki.css": {
+					"media": "jewiki"
+				}
+			}
+		},
 		"themeloader.skins.monobook.pink": {
 			"styles": {
 				"monobook/pink.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"themeloader.skins.monobook.saw": {
+			"styles": {
+				"monobook/saw.css": {
 					"media": "screen"
 				}
 			}
@@ -120,6 +142,20 @@
 				},
 				"vector/deepsea/deepsea-screen-hd.css": {
 					"media": "screen and (min-width: 982px)"
+				}
+			}
+		},
+		"themeloader.skins.vector.jewiki": {
+			"styles": {
+				"vector/jewiki/jewiki.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"themeloader.skins.vector.saw": {
+			"styles": {
+				"vector/saw/saw.css": {
+					"media": "screen"
 				}
 			}
 		}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:svg="http://www.w3.org/2000/svg" version="1.1"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="660" height="660" viewBox="0 0 660 660">
+	<title>Logo Jewiki</title>
+	<defs
+		id="defs1">
+		<path id="t"
+		   d="m -1000,580 h 2000 l -1000,-1732 z" />
+		<path id="l"
+		   d="m -700,577 h 700" />
+		<g id="t2">
+			<use xlink:href="#t" transform="rotate(0)"/>
+			<use xlink:href="#t" transform="rotate(60)"/>
+		</g>
+		<g id="l6">
+			<use xlink:href="#l" transform="rotate(0)"/>
+			<use xlink:href="#l" transform="rotate(60)"/>
+			<use xlink:href="#l" transform="rotate(120)"/>
+			<use xlink:href="#l" transform="rotate(180)"/>
+			<use xlink:href="#l" transform="rotate(-60)"/>
+			<use xlink:href="#l" transform="rotate(-120)"/>
+		</g>
+	</defs>
+	<rect width="660" height="660" style="fill:white;stroke:none"/>
+	<g id="p1"
+		style="fill:none;stroke:#0F45A5;stroke-width:160px"
+		transform="translate(330,256)scale(.17)">
+		<use xlink:href="#t2" style="stroke:white;stroke-width:240px"/>
+		<use xlink:href="#t2"/>
+		<use xlink:href="#l6" style="stroke:white;stroke-width:240px"/>
+		<use xlink:href="#l6"/>
+	</g>
+	<text
+		id="text"
+		style="fill:#0F45A5;font-size:220px;font-variant:small-caps;text-anchor:middle"
+		x="330"
+		y="630">Jewiki</text>
+</svg>

@@ -10,16 +10,19 @@ El mantenimiento de esta bifurcación de la extensión de MediaWiki [Theme](http
 
 Die Erweiterung unterstützt Themen, sie wird von themen-unterstützenden Skins verwendet.
 
-- Dem Skin ´monobook´ werden die Themen ´dark´, ´pink´, ´stellarbook´ und ´wipi´ bereitgestellt.
-- Dem Skin ´vector´ werden die Themen ´dark´, ´deepsea´ und ´dark-grey´ bereitgestellt.
+- Das Skin ´cologneblue´ stellt das Thema ´partybook´ bereit.
+- Das Skin ´monobook´ stellt die Themen ´dark´, ´pink´, ´stellarbook´ und ´wipi´ bereit.
+- Das Skin ´vector´ stellt die Themen ´dark´, ´deepsea´ und ´dark-grey´ bereit.
 
 The extension supports themes and is used by theme-supporting skins.
 
+- The skin ´cologneblue´ will be provided with the theme ´partybook´.
 - The skin ´monobook´ will be provided with the themes ´dark´, ´pink´, ´stellarbook´, and ´wipi´.
 - The skin ´vector´ will be provided with the themes ´dark´, ´deepsea´ and ´dark-grey´.
 
 La extensión admite temas y es utilizada por las apariencias que los admiten.
 
+- El tema visual ´cologneblue´ incluirá el tema ´partybook´.
 - El tema visual ´monobook´ incluirá los temas ´dark´, ´pink´, ´stellarbook´ y ´wipi´.
 - El tema visual ´vector´ incluirá los temas ´dark´, ´deepsea´ y ´dark-grey´.
 
@@ -89,3 +92,6 @@ Version 3.1 - Oct 13, 2026
 
 Version 3.2 - Oct 15, 2026
 - Add theme ´deepsea´
+
+Version 3.3 - Oct 29, 2026
+- Add theme ´partybook´

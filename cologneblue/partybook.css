@@ -1,0 +1,210 @@
+body {
+	background-color: #fff;
+	color: #000;
+	font-family: serif;
+}
+
+#powersearch {
+	background-color: #def;
+}
+
+#article {
+	background-color: #FDF8EF;
+	border: #000 solid 1px;
+	margin-left: 165px;
+	margin-right: 4px;
+	padding:5px;
+}
+#article,
+#article td,
+#article th,
+#article p {
+	color: #000;
+	font-family: 'Verdana', 'Arial', sans-serif;
+	font-size: 10pt;
+}
+
+#footer {
+	font-family: 'Verdana', 'Arial', sans-serif;
+}
+
+
+#pagestats {
+	font-family: 'Verdana', 'Arial', sans-serif;
+}
+
+#quickbar {
+	background-color: #FDF8EF;
+	border: black solid 1px;
+	color: #000;
+	font-family: 'Verdana', 'Arial', sans-serif;
+	font-size: 8pt;
+	font-weight: bold;
+	line-height: 9.5pt;
+	margin: 0 4px;
+	padding: 5px;
+	width: 140px;
+}
+
+#quickbar a {
+	color: #A70D01;
+}
+
+#quickbar h3,
+#quickbar h6,
+#quickbar .mw-portlet > label {
+	background-color: #FCDAD0;
+	border: #000000 solid 1px;
+	color: #000; 
+	font-family: 'Verdana', 'Arial', sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	line-height: 12pt;
+	margin-bottom: 2px;
+	margin-top: 6px;
+	padding: 0;
+}
+
+#quickbar .mw-portlet ul,
+#quickbar .portlet ul,
+#quickbar .portlet li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	line-height: inherit;
+}
+
+/* If the portlet is empty e.g. edit portlet  on special pages,
+this list should be removed: T271978#6747698 */
+.emptyPortlet {
+	display: none;
+}
+
+div.after-portlet {
+	display: inline;
+	padding-left: 0.5em;
+}
+
+.mw-heading1,
+h1 {
+	color: #000;
+	font-family: 'Verdana', 'Arial', sans-serif;
+}
+
+#article p.subtitle,
+#article p.subpages,
+#article p.tagline {
+	color: #000;
+}
+
+#toc {
+	background-color: #f7f8ff;
+	border: 1px solid #8888aa;
+	font-size: 95%;
+	padding: 5px;
+}
+#toc, .toc {
+	background-color: #f7f8ff;
+	border: 1px solid #bba;
+	font-size: 95%;
+	padding: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+a {
+	color: #FA0000;
+}
+
+a.external {
+	color: #364;
+}
+
+a:visited {
+	color: #A70D01;
+}
+
+a.stub,
+#quickbar a.stub {
+	color: #723;
+}
+
+a.new,
+#quickbar a.new,
+#quickbar span.new a,
+#footer span.new a {
+	color: #c20;
+}
+
+#searchInput {
+	width: 130px;
+}
+
+#footer {
+	clear: both;
+	margin-left: 152px;
+}
+
+#sitetitle,
+#sitesub,
+#toplinks,
+#linkcollection {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#sitetitle,
+#toplinks {
+	background-color: #A70D01;
+	color: #fff;
+	height: 32pt;
+	text-transform: capitalize;
+}
+
+#sitetitle {
+	color: #000;
+	font-family: 'Verdana', 'Arial', sans-serif;
+	font-size: 32pt;
+	font-weight: normal;
+	line-height: 32pt;
+	margin-bottom: 6px;
+	margin-left: 4px;
+	padding-left: 8px;
+}
+
+#sitetitle p {
+	margin-bottom: 6px;
+}
+#sitetitle a,
+#toplinks a {
+	color: #fff;
+}
+
+.catlinks {
+    background-color: #fff;
+    border: none;
+}
+
+/* Bring #sitetitle to top. Otherwise #toplinks is overlaid over it, making the link unclickable. */
+#sitetitle a {
+	background-color: #FDF8EF;
+	color: #000;
+	font-family: 'Verdana', 'Arial', sans-serif;
+	font-size: 20pt;
+	font-weight: bold;
+	line-height: 20pt;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	padding: 0 6px;
+}
+
+#toplinks {
+	color: #fff;
+	font-family: 'Verdana', 'Arial', sans-serif;
+}
+
+#toplinks a {
+	color: #fff;
+	font-size: 10pt;
+}

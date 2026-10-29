@@ -1,0 +1,38 @@
+/*
+** jewiki theme for Vector
+** Originally from jewiki.net
+*/
+
+:root {
+	--background-color: #EEF3FB;
+	--frame-color: #1B2B85;
+}
+
+body {
+    background-color: var(--background-color) !important;
+}
+
+#mw-page-base {
+	background-color: var(--background-color) !important;
+	background-image: none !important;
+}
+
+.vector-menu-tabs-legacy {
+	background-color: var(--background-color) !important;
+}
+
+.vector-menu-tabs-legacy li {
+	border-top-right-radius: 0.5em;
+	border-top-left-radius: 0.5em;
+}
+
+.mw-body {
+    border: 2px solid var(--frame-color) !important;
+	border-radius: 0.5em !important;
+	margin-top: 0 !important;
+	padding-left: 1em !important;
+}
+
+.vector-legacy-sidebar .vector-menu-portal .vector-menu-heading {
+    background-image: linear-gradient(to right,#0F45A5 0,#0F45A5 33%,#0F45A5 66%,#0F45A5 100%);
+}

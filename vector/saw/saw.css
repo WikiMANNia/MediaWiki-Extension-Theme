@@ -1,0 +1,357 @@
+/*
+** SAW theme for Vector
+** Originally from Spankingart.org
+**
+** @date 14 October 2026
+** @see http://spankingart.org/index.php?title=MediaWiki:Vector.css&action=history
+*/
+
+/** CSS placed here will be applied to all skins */
+ .sitenotice-nav, #titlehack, #title-shortcut, #title-eraicons { display: none; }
+
+ /* Fix size issues between different platforms */
+ code, pre { font-size: 10pt!important }
+ /* Class to force links to be underlined 
+ To use: <span class="underlinelink">[[link]]</span>  --Paulgb */
+ .underlinelink a { text-decoration: underline ! important; }
+ /* Class to force links to be not underlined - See .underlinelink for use -Paulgb */
+ .nounderlinelink a { text-decoration: none ! important; }
+ .nounderlinelink a:hover { text-decoration: underline ! important; }
+ .forum_title a.forum_new { font-weight: bold; }
+ .forum_title a.forum_new:visited { font-weight: normal; }
+ .allpagesredirect { font-style: italic; }
+
+ /* buttons and input boxes */
+ input[type="submit"] { border: 1px solid #aaa; border-bottom: 2px solid #aaa; border-right: 2px solid #aaa; background: #eee; }
+ input[type="text"], input[type="password"], textarea[name="wpTextbox1"] { border: 1px solid #aaa; border-top: 2px solid #aaa; border-left: 2px solid #aaa; }
+
+ /* ugly hack to force normal height for infobox cells */
+ .infoboxcell p { margin-top: 0px; margin-bottom: 0px; }
+ .infoboxcell ul { list-style-type: disc; }
+
+ /* VFD stuff - temporary */
+ .vfdlist ul li a { margin-left: 1em; font-weight: bold; }
+ .vfdlist ul li s a { margin-left: 0em; font-weight: normal; }
+ .vfdlist ul li strike a { margin-left: 0em; font-weight: normal; }
+
+ /* main page */
+ /* sky */
+ .mp2-sky .mp2left
+   { background: #f5fffa; border-color: #cef2e0; }
+ .mp2-sky .mp2lefttitle
+   { background: #cef2e0; border-color: #a3b0bf; }
+ .mp2-sky .mp2right
+   { background: #f5faff; border-color: #cedff2; }
+ .mp2-sky .mp2righttitle
+   { background: #cedff2; border-color: #a3b0bf; }
+ .mp2-sky .mp2community
+   { background: #f9f9f9; border-color: #eeeeee; }
+ .mp2-sky .mp2communitytitle
+   { background: #eeeeee; border-color: #cccccc; }
+ .mp2-sky .mp2communityinner
+   { border-color: #cedff2; background: #fffffa; border-color: #ffffee; }
+ .mp2-sky .mp2quotetitle
+   { background: #ffffee; border-color: #dddd00; }
+ /* /sky */
+ /* water */
+ .mp2-water .mp2left
+   { background: #eeeeee; border-color: #6495ED; }
+ .mp2-water .mp2lefttitle
+   { background: #5FB3AC; border-color: #000000; }
+ .mp2-water .mp2right
+   { background: #f5faff; border-color: #6495ED; }
+ .mp2-water .mp2righttitle
+   { background: #5CACEE; border-color: #000000; }
+ .mp2-water .mp2community
+   { background: #f9f9f9; border-color: #eeeeee; }
+ .mp2-water .mp2communitytitle
+   { background: #5CACEE; border-color: #000000; }
+ .mp2-water .mp2communityinner
+   { border-color: #6495ED; }
+ .mp2-water .mp2quote
+   { background: #fffffa; border-color: #ffffee; }
+ .mp2-water .mp2quotetitle
+   { background: #ffffee; border-color: #dddd00; }
+ /* /water */
+
+ /* Infobox template style */
+ .infobox {
+   border: 1px solid #aaaaaa;
+   background-color: #f9f9f9;
+   color: black;
+   margin-bottom: 0.5em;
+   margin-left: 1em;
+   padding: 0.2em;
+   float: right;
+   clear: right;
+ }
+ .infobox td,
+ .infobox th {
+   vertical-align: top;
+ }
+ .infobox caption {
+   font-size: larger;
+   margin-left: inherit;
+ }
+ .infobox.bordered {
+   border-collapse: collapse;
+ }
+ .infobox.bordered td,
+ .infobox.bordered th {
+   border: 1px solid #aaaaaa;
+ }
+ .infobox.bordered .borderless td,
+ .infobox.bordered .borderless th {
+   border: 0;
+ }
+ .infobox.sisterproject {
+   width: 20em;
+   font-size: 90%;
+ }
+
+/* pre style override */
+pre.nostyle { padding:0; border:none; background:none; }
+
+/* default skin for navigation boxes */
+table.navbox {
+    background-color: #f9f9f9;
+    border: 1px solid #aaa;
+    clear: both;
+    font-size: 90%;
+    margin: 0.5em 0em 0em;
+    padding: 2px;
+    text-align: center;
+    width: 100%;
+}
+
+table.navbox th {
+    background-color: #ccf;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+table.navbox tr:not(:first-child) th {
+    background-color: #ddf;
+}
+
+/* Style for wikitables */
+.wikitable, .prettytable {
+    margin: 1em 1em 1em 0;
+    background: #f9f9f9;
+    border: 1px #ffaa88 solid;
+    border-collapse: collapse; 
+    border-spacing: 0;
+    padding: 0;
+    font-size: 95%;
+    !important;
+}
+
+.wikitable tr.alt, .prettytable tr.alt {
+    background: #ffffee;
+    !important;
+}
+
+.wikitable tr:hover, .prettytable tr:hover { 
+    background: #fd8;
+    !important;
+}
+
+.wikitable th, .prettytable th {
+    border: 1px #ffaa88 solid;
+    background: #ffdd88;
+    margin: 0;
+    padding: 4px;
+    !important;
+}
+
+.wikitable td, .prettytable td {
+    border: 1px #ffaa88 solid;
+    margin: 0;
+    padding: 4px;
+    !important;
+}
+
+/* used in {{reflist}} */
+.references-small { font-size: 90%; }
+
+/* For [show]/[hide] link of javascript collapsible tables */
+.collapseButton {         /* 'show'/'hide' buttons created dynamically by the        */
+    float: right;         /* CollapsibleTables javascript in [[MediaWiki:Common.js]] */
+    font-weight: normal;  /* are styled here so they can be customised.              */
+    text-align: right;
+    width: auto;
+}
+
+/*******************
+** Collapsible navigation boxes (see [[en:Wikipedia:NavFrame]])
+*******************/
+div.Boxmerge,
+div.NavFrame {
+	margin:0px;
+	padding:4px;
+	border:1px solid #AAA;
+	border-collapse:collapse;
+	text-align:center;
+	font-size:95%;
+}
+div.Boxmerge div.NavFrame {
+	border-style:none;
+	border-style:hidden;
+}
+div.NavFrame + div.NavFrame {
+	border-top-style:none;
+	border-top-style:hidden;
+}
+div.NavPic {
+	float:left;
+	margin:0px;
+	padding:2px;
+	background:#FFF;
+}
+div.NavFrame div.NavHead {
+	position:relative;
+	height:1.6em;
+	background:#CCF;
+	font-weight:bold;
+}
+div.NavFrame p {
+	font-size:100%;
+}
+div.NavFrame div.NavContent {
+	font-size:100%;
+}
+div.NavFrame div.NavContent p {
+	font-size:100%;
+}
+div.NavEnd {
+	clear:both;
+	margin:0px;
+	padding:0px;
+	line-height:1px;
+}
+a.NavToggle {
+	position:absolute;
+	top:0px;
+	right:3px;
+	font-size:smaller;
+	font-weight:normal;
+}
+
+/******* Extra buttons for 'edittools' (modified from www.mediawiki.org/MediaWiki:Common.css) ********/
+.my-buttons {
+        /* padding: 1em; */
+        /* margin:5px; */
+}
+.my-buttons a {
+        display: inline-block;
+        color: black;
+        background-color: #c0d0e0 ;
+        font-family:monospace;
+        text-decoration: none;
+        border: thin #069 outset;
+        padding-left: 0.5ex;
+        padding-right: 0.5ex;
+}
+.my-buttons a:hover {
+        background-color: #d0e0f0;
+        border-style:outset;
+}
+.my-buttons a:active {
+        background-color: #e0f0e0;
+        border-style: inset;
+}
+
+/* Used to format Extention:Poem */
+.poem {
+        margin-left: 3em;
+}
+
+/** CSS placed here will be applied to skin vector */
+
+#mw-page-base {
+	background-image: none !important;
+	background-color: #fee9d0 !important;
+}
+#mw-head, #mw-page-head, #mw-page-base {
+	height: 4em !important;
+}
+body {
+	background-color: #fee9d0 !important;
+}
+.mw-body {
+	border: 1px solid #AD844A !important;
+}
+#mw-panel div.vector-menu-content {
+	background-color: #ffffff;
+	border: 1px solid #AD844A;
+	border-radius: 0.5em;
+	margin-left: 0em;
+}
+#mw-panel ul.vector-menu-content-list {
+	margin-left: .5em;
+}
+#mw-panel .vector-menu-portal .vector-menu-heading {
+	background-image: none;
+}
+.vector-menu-tabs,
+.vector-menu-tabs a,
+#mw-head .vector-menu-dropdown .vector-menu-heading {
+	background-image: none !important;
+}
+.vector-menu-tabs,
+.vector-menu-tabs-legacy {
+	height: 1.0em !important;
+}
+.vector-menu-tabs .selected,
+.vector-menu-tabs-legacy .selected {
+	background: #ffffff;
+	position: relative; bottom: 0px;
+}
+.vector-menu-tabs .mw-watchlink.icon a {
+	height: 0em !important;
+	padding-top: 1.384em !important;
+}
+.vector-menu-tabs .mw-watchlink.icon a::before {
+	top: 0em !important;
+}
+.mw-list-item li,
+.vector-menu-tabs li,
+.vector-menu-tabs-legacy li {
+	background: #F7C6AD;
+	background-image: none !important;
+	border-left: 1px solid #AD844A;
+	border-right: 1px solid #AD844A;
+	border-top: 1px solid #AD844A;
+	border-top-left-radius: 0.8em;
+	border-top-right-radius: 0.8em;
+	padding-top: 0.25em !important;
+	position: relative; right: 1px;
+	position: relative; bottom: 0px;
+}
+.vector-menu-tabs li a,
+.vector-menu-tabs-legacy li a,
+.vector-menu-checkbox {
+	height: 100% !important;
+	padding-top: 0em !important;
+}
+.vector-menu-checkbox .vector-menu-heading {
+	margin-top: 0em !important;
+	padding-top: 0.3em !important;
+	padding-bottom: 0em !important;
+}
+.vector-menu-dropdown .vector-menu-heading {
+	margin-top: 0em !important;
+	padding-top: 0.3em !important;
+	padding-bottom: 0.2em !important;
+}
+.vector-search-box form {
+	margin-top: 0em !important;
+}
+.vector-search-box-input {
+	height: 100% !important;
+	padding-top: 0.3em !important;
+	padding-bottom: 0.2em !important;
+}
+.oo-ui-tabSelectWidget-framed {
+	background-color: #F7C6AD !important;
+}

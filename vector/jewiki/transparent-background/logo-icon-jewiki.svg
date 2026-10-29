@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:svg="http://www.w3.org/2000/svg" version="1.1"
+	 xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="660" height="660" viewBox="0 0 660 660">
+	<title>Logo Jewiki</title>
+	<defs>
+		<path id="t"
+			d="m -5528,-3161 -23,-39 6246,1 492,854 -5234,18 767,1331 -499,856 z" />
+		<g id="t6">
+			<use xlink:href="#t" transform="rotate(0)"/>
+			<use xlink:href="#t" transform="rotate(60)"/>
+			<use xlink:href="#t" transform="rotate(120)"/>
+			<use xlink:href="#t" transform="rotate(180)"/>
+			<use xlink:href="#t" transform="rotate(-60)"/>
+			<use xlink:href="#t" transform="rotate(-120)"/>
+		</g>
+	</defs>
+	<use id="star"
+		style="fill:#1B2B85;stroke:none"
+		transform="translate(330,256)scale(0.035,-0.035)"
+		xlink:href="#t6"/>
+	<g id="path_jewiki"
+		style="fill:#1B2B85;stroke:none"
+		transform="translate(0,6)scale(4.8889)">
+		<path
+			id="path_j"
+			d="m 8.7,121.3 c 2.155808,0.75334 4.753121,1.47996 6.830311,0.53112 0.954102,-0.43583 1.541614,-1.53482 1.869689,-2.53112 0.02175,-0.0604 0,-17.3 0,-17.3 l -0.7,-2 h 6.5 l -0.7,2 v 19.059 c -0.450539,1.37871 -1.361177,2.70937 -2.569517,3.51171 -1.71749,1.14042 -3.857808,1.38857 -6.017481,1.42929 -2.159673,0.0407 -4.2155459,-0.48376 -6.313002,-0.8 -1.3384677,-0.20181 -4,-0.7 -4,-0.7 L 5.3,119 c 0,0 2.1083035,1.84862 3.4,2.3 z" />
+		<path
+			id="path_e"
+			d="m 41.8,113 1.2,-0.9 v 5.9 l -1.2,-0.7 h -8.3 v 4.5 H 46 l 1.5,-0.5 v 5.2 L 46,126 H 28.2 L 29,124.0471 V 106 l -0.8,-1.5 H 46 l 1.5,-0.5 v 4.794 L 46,108.68658 33.5,108.41006 V 113 z" />
+		<path
+			id="path_w"
+			d="m 84.4,107 -6.2,15 v 2 l 0.9,2 h -7.5 l 0.7,-2 v -2 l -4.5,-10 -4.5,10 v 2 l 0.9,2 h -7.5 l 0.8,-2 v -2 l -5.8,-15 -1.168202,-2.5 H 56.9 l -0.4,2.5 4,10 4.3,-10 -1,-2.5 h 8 l -1,2.5 4.3,10 4.4,-10 -0.6,-2.5 h 6.323 z" />
+		<path
+			id="path_i"
+			d="m 94,124.5 1.087734,1.5 H 87.924573 L 88.8,124.5 v -18 l -0.685036,-2 h 6.604779 L 94,106.5 Z" />
+		<path
+			id="path_k"
+			d="m 104.8,126 H 99 l 0.8,-1.4 -5e-4,-18.31378 L 99.065333,104.5 H 104.8385 L 104,106.27659 V 114 l 8.95263,-7.61348 L 112.52107,104.5 H 120.3 l -1.58363,2.04984 L 110.7,113.3 l 9.4,11 1.4,1.7 h -8.06543 l 0.34447,-2.2096 L 107.6,116 104,119 v 5.6 z" />
+		<use id="use_i2"
+			xlink:href="#path_i"
+			x="36" />
+	</g>
+</svg>

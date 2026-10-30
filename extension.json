@@ -1,7 +1,7 @@
 {
 	"name": "Theme",
 	"namemsg": "theme-extensionname",
-	"version": "3.3",
+	"version": "3.3.1",
 	"author": [
 		"Ryan Schmidt",
 		"Jack Phoenix",
@@ -14,8 +14,14 @@
 		"MediaWiki": ">= 1.35.0"
 	},
 	"config": {
-		"DefaultTheme": "default",
-		"SkipThemes": []
+		"DefaultTheme": {
+			"type": "string",
+			"value": "default"
+		},
+		"SkipThemes": {
+			"type": "array",
+			"value": []
+		}
 	},
 	"callback": "MediaWiki\\Extension\\Theme\\Hooks::onRegistration",
 	"MessagesDirs": {
@@ -23,10 +29,14 @@
 			"i18n"
 		]
 	},
-	"ThemeModules": {
-		"cologneblue": [ "partybook" ],
-		"monobook": [ "dark", "jewiki", "pink", "saw", "stellarbook", "wipi" ],
-		"vector": [ "dark", "dark-grey", "deepsea", "jewiki", "saw" ]
+	"attributes": {
+		"Theme": {
+			"Modules": {
+				"cologneblue": [ "partybook" ],
+				"monobook": [ "dark", "pink", "stellarbook", "wipi" ],
+				"vector": [ "dark", "dark-grey", "deepsea" ]
+			}
+		}
 	},
 	"APIModules": {
 		"themelist": {
@@ -71,23 +81,9 @@
 				}
 			}
 		},
-		"themeloader.skins.monobook.jewiki": {
-			"styles": {
-				"monobook/jewiki.css": {
-					"media": "jewiki"
-				}
-			}
-		},
 		"themeloader.skins.monobook.pink": {
 			"styles": {
 				"monobook/pink.css": {
-					"media": "screen"
-				}
-			}
-		},
-		"themeloader.skins.monobook.saw": {
-			"styles": {
-				"monobook/saw.css": {
 					"media": "screen"
 				}
 			}
@@ -144,34 +140,14 @@
 					"media": "screen and (min-width: 982px)"
 				}
 			}
-		},
-		"themeloader.skins.vector.jewiki": {
-			"styles": {
-				"vector/jewiki/jewiki.css": {
-					"media": "screen"
-				}
-			}
-		},
-		"themeloader.skins.vector.saw": {
-			"styles": {
-				"vector/saw/saw.css": {
-					"media": "screen"
-				}
-			}
 		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteExtPath": "Theme"
 	},
-	"Hooks": {
-		"BeforePageDisplay": "ThemeHooks",
-		"GetPreferences": "ThemeHooks",
-		"OutputPageBodyAttributes": "ThemeHooks",
-		"ResourceLoaderGetConfigVars": "ThemeHooks"
-	},
 	"HookHandlers": {
-		"ThemeHooks": {
+		"main": {
 			"class": "MediaWiki\\Extension\\Theme\\Hooks",
 			"services": [
 				"SkinFactory",
@@ -179,5 +155,11 @@
 			]
 		}
 	},
-	"manifest_version": 1
+	"Hooks": {
+		"BeforePageDisplay": "main",
+		"GetPreferences": "main",
+		"OutputPageBodyAttributes": "main",
+		"ResourceLoaderGetConfigVars": "main"
+	},
+	"manifest_version": 2
 }

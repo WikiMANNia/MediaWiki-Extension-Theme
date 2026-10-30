@@ -95,3 +95,6 @@ Version 3.2 - Oct 15, 2026
 
 Version 3.3 - Oct 29, 2026
 - Add theme ´partybook´
+
+Version 3.3.1 - Oct 30, 2026
+- Upgrade ´extension.json´ to manifest version 2

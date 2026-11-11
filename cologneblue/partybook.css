@@ -189,13 +189,13 @@ a.new,
 /* Bring #sitetitle to top. Otherwise #toplinks is overlaid over it, making the link unclickable. */
 #sitetitle a {
 	background-color: #FDF8EF;
+	border: #961301 solid 4px;
+    bottom: 6px;
 	color: #000;
 	font-family: 'Verdana', 'Arial', sans-serif;
 	font-size: 20pt;
 	font-weight: bold;
 	line-height: 20pt;
-	margin-bottom: 2px;
-	margin-top: 2px;
 	padding: 0 6px;
 }
 

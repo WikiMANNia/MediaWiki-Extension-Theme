@@ -128,10 +128,10 @@ class Hooks implements
 		// Without this they show up as "0", "1", etc. in the UI
 		$themeArray = [];
 		foreach ( $themes as $theme ) {
-			$themeDisplayNameMsg =
-				( $theme === 'default' )
-				? $ctx->msg( "theme-name-default" )
-				: $ctx->msg( "theme-name-$skin-$theme" );
+			$msg_key = ( $theme === 'default' )
+				? "theme-name-default"
+				: "theme-name-$skin-$theme";
+			$themeDisplayNameMsg = $ctx->msg( $msg_key );
 			if ( $themeDisplayNameMsg->isDisabled() ) {
 				// No i18n available for this -> use the key as-is
 				$themeDisplayName = ucfirst( $theme );
@@ -144,17 +144,17 @@ class Hooks implements
 		}
 
 		$skinsWithThemes = Theme::getSkinsWithThemes(
-			method_exists( $this->skinFactory, 'getInstalledSkins' )
-			// @phan-suppress-next-line PhanUndeclaredMethod
-			? $this->skinFactory->getInstalledSkins()
-			: $this->skinFactory->getSkinNames()
-		);
+				$this->skinFactory->getInstalledSkins()
+			);
 		$showIf = [ 'OR' ];
 		foreach ( $skinsWithThemes as $skin ) {
 			$showIf[] = [ '===', 'skin', $skin ];
 		}
 
 		$defaultTheme = $ctx->getConfig()->get( 'DefaultTheme' );
+		if ( empty( $defaultTheme ) ) {
+			$defaultSkin = 'default';
+		}
 		$defaultTheme = $this->userOptionsLookup->getOption( $user, 'theme', $defaultTheme );
 		$defaultPreferences['theme'] = [
 			'type' => 'select',

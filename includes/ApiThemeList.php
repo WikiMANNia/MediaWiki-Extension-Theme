@@ -59,11 +59,7 @@ class ApiThemeList extends ApiBase {
 		if ( empty( $defaultTheme ) ) {
 			$defaultSkin = DEFAULT;
 		}
-		$skinNames =
-			method_exists( $this->skinFactory, 'getInstalledSkins' )
-			? $this->skinFactory->getInstalledSkins()
-			// @phan-suppress-next-line PhanUndeclaredMethod
-			: $this->skinFactory->getSkinNames();
+		$skinNames = $this->skinFactory->getInstalledSkins();
 
 		foreach ( $skinNames as $skin => $displayName ) {
 			$themes = Theme::getAvailableThemes( $skin );

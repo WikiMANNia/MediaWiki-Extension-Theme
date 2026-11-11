@@ -51,10 +51,14 @@ class ApiThemeList extends ApiBase {
 	 * @return bool
 	 */
 	private function appendThemes( $property = 'themes' ): bool {
+		const DEFAULT = 'default';
 		$data = [];
 		$config = $this->getConfig();
-		$defaultTheme = $config->get( 'DefaultTheme' );
 		$defaultSkin = $config->get( 'DefaultSkin' );
+		$defaultTheme = $config->get( 'DefaultTheme' );
+		if ( empty( $defaultTheme ) ) {
+			$defaultSkin = DEFAULT;
+		}
 		$skinNames =
 			method_exists( $this->skinFactory, 'getInstalledSkins' )
 			? $this->skinFactory->getInstalledSkins()
@@ -82,7 +86,7 @@ class ApiThemeList extends ApiBase {
 				$theme = [ 'code' => $themeKey ];
 				ApiResult::setContentValue( $theme, 'name', $themeDisplayName );
 				if ( ( $themeKey === $defaultTheme ) && ( $skin === $defaultSkin ) ) {
-					$theme['default'] = true;
+					$theme[DEFAULT] = true;
 				}
 				$data[$skin][] = $theme;
 			}

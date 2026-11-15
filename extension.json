@@ -11,7 +11,7 @@
 	"descriptionmsg": "theme-desc",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.35.0"
+		"MediaWiki": ">= 1.39.0"
 	},
 	"config": {
 		"DefaultTheme": {
@@ -32,9 +32,12 @@
 	"attributes": {
 		"Theme": {
 			"Modules": {
-				"cologneblue": [ "partybook" ],
-				"monobook": [ "dark", "pink", "stellarbook", "wipi" ],
-				"vector": [ "dark", "dark-grey", "deepsea" ]
+				"cologneblue": [ "partybook", "wima" ],
+				"minerva": [ "wima" ],
+				"modern": [ "wima" ],
+				"monobook": [ "dark", "jewiki", "pink", "saw", "stellarbook", "wima", "wipi" ],
+				"timeless": [ "wima" ],
+				"vector": [ "dark", "dark-grey", "deepsea", "jewiki", "saw", "wima" ]
 			}
 		}
 	},
@@ -68,6 +71,27 @@
 				}
 			}
 		},
+		"themeloader.skins.cologneblue.wima": {
+			"styles": {
+				"cologneblue/wima.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"themeloader.skins.minerva.wima": {
+			"styles": {
+				"minerva/wima.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"themeloader.skins.modern.wima": {
+			"styles": {
+				"modern/wima.css": {
+					"media": "screen"
+				}
+			}
+		},
 		"themeloader.skins.monobook.dark": {
 			"styles": {
 				"monobook/dark.css": {
@@ -81,9 +105,23 @@
 				}
 			}
 		},
+		"themeloader.skins.monobook.jewiki": {
+			"styles": {
+				"monobook/jewiki.css": {
+					"media": "screen"
+				}
+			}
+		},
 		"themeloader.skins.monobook.pink": {
 			"styles": {
 				"monobook/pink.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"themeloader.skins.monobook.saw": {
+			"styles": {
+				"monobook/saw.css": {
 					"media": "screen"
 				}
 			}
@@ -98,12 +136,26 @@
 				}
 			}
 		},
+		"themeloader.skins.monobook.wima": {
+			"styles": {
+				"monobook/wima.css": {
+					"media": "screen"
+				}
+			}
+		},
 		"themeloader.skins.monobook.wipi": {
 			"styles": {
 				"monobook/wipi.css": {
 					"media": "screen"
 				},
 				"monobook/dark.ooui.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"themeloader.skins.timeless.wima": {
+			"styles": {
+				"timeless/wima.css": {
 					"media": "screen"
 				}
 			}
@@ -138,6 +190,27 @@
 				},
 				"vector/deepsea/deepsea-screen-hd.css": {
 					"media": "screen and (min-width: 982px)"
+				}
+			}
+		},
+		"themeloader.skins.vector.jewiki": {
+			"styles": {
+				"vector/jewiki/jewiki.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"themeloader.skins.vector.saw": {
+			"styles": {
+				"vector/saw/saw.css": {
+					"media": "screen"
+				}
+			}
+		},
+		"themeloader.skins.vector.wima": {
+			"styles": {
+				"vector/wima.css": {
+					"media": "screen"
 				}
 			}
 		}

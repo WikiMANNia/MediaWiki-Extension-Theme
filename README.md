@@ -44,6 +44,17 @@ Excluir los siguientes temas:
 
 : "SkipThemes": []
 
+´SkipThemes´ kann nun aber - unbeabsichtigt - dazu führen, dass das ´DefaultTheme´ gar nicht mehr zu den zugelassenen Themen gehört.
+Es kann - optional - eine Ausweichalternative definiert werden:
+
+However, using ´SkipThemes´ can unintentionally cause the ´DefaultTheme´ to no longer be among the allowed themes.
+Optionally, an alternative theme can be defined:
+
+Sin embargo, usar ´SkipThemes´ puede provocar involuntariamente que ´DefaultTheme´ deje de estar entre los temas permitidos.
+Opcionalmente, se puede definir un tema alternativo:
+
+: "FallbackTheme": "default",
+
 ## Compatibility
 
 This extension has been tested with MediaWiki versions `1.35.14`, `1.39.17`, `1.43.9`, `1.45.4`, and `1.47.0-alpha`.
@@ -73,7 +84,7 @@ $wgSkipThemes = [
 		'dark' => true
 	]
 ];´
-- If you wanted to disable the StellarBook MonoBook and dark Vector themes, for example.
+- If you wanted to disable the ´StellarBook´ MonoBook and ´dark´ Vector themes, for example.
 
 Version 2.5.1 - Oct 29, 2024
 - Future-proofing
@@ -98,3 +109,7 @@ Version 3.3 - Oct 29, 2026
 
 Version 3.3.1 - Oct 30, 2026
 - Upgrade ´extension.json´ to manifest version 2
+
+Version 3.3.2 - Nov 15, 2026
+- Throwing an InvalidArgumentException is to much at this point. A warning will be good enough.
+- Add function ´getDefaultTheme()´ to handle global variables ´DefaultTheme´ and ´FallbackTheme´.

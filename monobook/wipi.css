@@ -964,6 +964,94 @@ div.view-poll-navigation h2 {
   }
 }
 
+/* Portals and Main page */
+.wm-infobox {
+clear: none;
+empty-cells:collapse;
+float: right;
+font-size: 1.0em;
+line-height: 1.6em;
+margin: 0 0 1em 1em;
+padding: 0;
+vertical-align: top;
+width: 25em;
+}
+.wm-infobox th {
+padding-left: .5em;
+text-align: left;
+}
+.wm-infobox-title {
+background: #000060;
+border-spacing: 1px;
+color: #fff;
+font-size: 1.1em;
+font-weight: bold;
+line-height: 1.5em;
+padding: .1em;
+text-align: center;
+}
+.wm-infobox-moreinfo {
+background-color: transparent;
+border: 1px solid #fabd23;
+color: #fff;
+text-align: center;
+}
+.wm-infobox-image {
+padding: 1em 0;
+text-align: center;
+}
+.wm-infobox-film-section {
+background-color: #336699; 
+color: #DFF7FF;
+border-top: 1px solid #B1B9C9;
+padding: 4px;
+text-align: center;
+}
+.wm-infobox-film-title {
+background-color: #EDEDFC;
+padding: 0px 4px 0px 5px;
+}
+.wm-infobox-film-key {
+background-color:#F6F6F6;
+padding:0px 5px 0px 5px;
+}
+.wm-infobox-clear {
+clear: none;
+}
+
+@media screen and (max-width:640px) {
+.wm-infobox-clear {
+clear: both;
+}
+}
+
+.wikitable {
+background-color: #cacaf7;
+border: 2px solid #000060;
+border-collapse: collapse;
+margin:1em 0 1em 1em;
+empty-cells:show
+}
+
+.mw-message-box-error {
+  background-color: #fabd23;
+  border: 1px solid #f00;
+  color: #f00;
+}
+.mw-message-box-success {
+  background-color: #000060;
+  border: 1px solid #0f0;
+  color: #0f0;
+}
+input {
+  background-color: #cacaf7;
+  border-color: #000060;
+  color: #000060;
+}
+legend {
+	background-color: #000060;
+}
+
 /** other */
 div.tleft { border: none; }
 div.tright { margin-left: 13px; }

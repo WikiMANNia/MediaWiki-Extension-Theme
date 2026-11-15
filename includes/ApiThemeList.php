@@ -55,10 +55,10 @@ class ApiThemeList extends ApiBase {
 		$data = [];
 		$config = $this->getConfig();
 		$defaultSkin = $config->get( 'DefaultSkin' );
-		$defaultTheme = $config->get( 'DefaultTheme' );
-		if ( empty( $defaultTheme ) ) {
-			$defaultSkin = DEFAULT;
-		}
+		$defaultTheme =
+			$this->config->has( 'DefaultTheme' )
+			? $this->config->get( 'DefaultTheme' )
+			: DEFAULT;
 		$skinNames =
 			method_exists( $this->skinFactory, 'getInstalledSkins' )
 			? $this->skinFactory->getInstalledSkins()

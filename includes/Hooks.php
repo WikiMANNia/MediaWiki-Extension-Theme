@@ -132,11 +132,11 @@ class Hooks implements
 		}
 
 		$skinsWithThemes = Theme::getSkinsWithThemes(
-			method_exists( $this->skinFactory, 'getInstalledSkins' )
-			// @phan-suppress-next-line PhanUndeclaredMethod
-			? $this->skinFactory->getInstalledSkins()
-			: $this->skinFactory->getSkinNames()
-		);
+				method_exists( $this->skinFactory, 'getInstalledSkins' )
+				// @phan-suppress-next-line PhanUndeclaredMethod
+				? $this->skinFactory->getInstalledSkins()
+				: $this->skinFactory->getSkinNames()
+			);
 		$showIf = [ 'OR' ];
 		foreach ( $skinsWithThemes as $skin ) {
 			$showIf[] = [ '===', 'skin', $skin ];

@@ -36,17 +36,66 @@ class Theme {
 
 		// Filter out the themes defined in $wgSkipThemes for a skin, if any
 		$skipThemes = MediaWikiServices::getInstance()->getMainConfig()->get( 'SkipThemes' );
-		if ( is_array( $skipThemes ) ) {
-			if ( !empty( $skipThemes[$ourSkin] ) ) {
-				foreach ( $skipThemes[$ourSkin] as $skippable ) {
-					unset( $themes[$ourSkin][$skippable] );
-				}
-			}
-		} else {
-			throw new InvalidArgumentException( "Theme extension has a configuration error: 'SkipThemes' is not an array." );
+
+		if ( !is_array( $skipThemes ) ) {
+			wfLogWarning(
+				"Theme extension has an invalid configuration: 'SkipThemes' must be an array. Ignoring configuration."
+			);
+			$skipThemes = [];
+		}
+
+		if ( !isset( $skipThemes[$ourSkin] ) || !is_array( $skipThemes[$ourSkin] ) ) {
+			$skipThemes[$ourSkin] = [];
+		}
+
+		foreach ( $skipThemes[$ourSkin] as $skippable ) {
+			unset( $themes[$ourSkin][$skippable] );
 		}
 
 		return !empty( $themes[$ourSkin] ) ? $themes[$ourSkin] : [ 'default' => 'default' ];
+	}
+
+	/**
+	 * Gets the default theme.
+	 */
+	public static function getDefaultTheme( string $ourSkin, string $hardcodedFallback ): string {
+
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		$availableThemes = self::getAvailableThemes( $ourSkin );
+
+		$fallbackTheme = $config->has( 'FallbackTheme' )
+				? $config->get( 'FallbackTheme' )
+				: $hardcodedFallback;
+		$defaultTheme = $config->has( 'DefaultTheme' )
+				? $config->get( 'DefaultTheme' )
+				: $fallbackTheme;
+
+		// Validate default theme
+		if (
+			!is_string( $defaultTheme ) ||
+			!in_array( $defaultTheme, $availableThemes, true )
+		) {
+			$defaultTheme = $fallbackTheme;
+		}
+
+		// Validate fallback theme
+		if (
+			!is_string( $defaultTheme ) ||
+			!in_array( $defaultTheme, $availableThemes, true )
+		) {
+  			$defaultTheme = $hardcodedFallback;
+		}
+
+		// Last resort: use the first available theme
+		if (
+  			!is_string( $defaultTheme ) ||
+  			!in_array( $defaultTheme, $availableThemes, true )
+		) {
+  			$defaultTheme = reset( $availableThemes );
+		}
+
+		return $defaultTheme;
 	}
 
 	/**

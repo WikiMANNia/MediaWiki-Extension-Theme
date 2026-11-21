@@ -62,6 +62,16 @@ Opcionalmente, se puede definir un tema alternativo:
 
 : "FallbackTheme": "default",
 
+
+Die Auswahl der Themen in den Benutzereinstellungen deaktivieren:
+
+Disable theme selection in user settings:
+
+Deshabilitar la selección de temas en la configuración de usuario:
+
+- $wgDisableSelectThemes['monaco'] = true;
+- $wgDisableSelectThemes['monobook'] = true;
+
 ## Compatibility
 
 This extension has been tested with MediaWiki versions `1.35.14`, `1.39.17`, `1.43.9`, `1.45.4`, and `1.47.0-alpha`.
@@ -120,3 +130,6 @@ Version 3.3.1 - Oct 30, 2026
 Version 3.3.2 - Nov 15, 2026
 - Throwing an InvalidArgumentException is to much at this point. A warning will be good enough.
 - Add function ´getDefaultTheme()´ to handle global variables ´DefaultTheme´ and ´FallbackTheme´.
+
+Version 3.4 - Nov 21, 2026
+- Add global variable ´DisableSelectThemes´.

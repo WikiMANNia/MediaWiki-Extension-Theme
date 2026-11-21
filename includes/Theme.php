@@ -108,6 +108,21 @@ class Theme {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public static function isDisabledSelectThemes( string $skin ): bool {
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		if ( $config->has( 'DisableSelectThemes' ) ) {
+			$disableSelectThemes = $config->get( 'DisableSelectThemes' );
+			if ( isset( $disableSelectThemes[$skin] ) ) {
+				return $disableSelectThemes[$skin];
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Check if the given skin has a theme named $theme and that it is usable
 	 * (i.e. NOT in the $wgSkipThemes configuration variable array).
 	 *
@@ -124,6 +139,11 @@ class Theme {
 		// "the skin without any custom styling"
 		if ( $theme === 'default' ) {
 			return true;
+		}
+
+		// The skin may provides themes but the selection of themes is disabled
+		if ( self::isDisabledSelectThemes( $skin ) ) {
+			return false;
 		}
 
 		$skipThemes = MediaWikiServices::getInstance()->getMainConfig()->get( 'SkipThemes' );
@@ -164,7 +184,7 @@ class Theme {
 		$themes = ExtensionRegistry::getInstance()->getAttribute( 'ThemeModules' );
 
 		foreach ( $skins as $skin ) {
-			if ( isset( $themes[$skin] ) ) {
+			if ( isset( $themes[$skin] ) && !self::isDisabledSelectThemes( $skin ) ) {
 				$skinsWithThemes[] = $skin;
 			}
 		}

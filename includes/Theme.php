@@ -158,9 +158,6 @@ class Theme {
 		}
 
 		$moduleName = 'themeloader.skins.' . $skin . '.' . $theme;
-		if ( $skin === 'monaco' ) {
-			$moduleName = 'skins.' . $skin . '.' . $theme;
-		}
 
 		if ( $resourceLoader->isModuleRegistered( $moduleName ) && $resourceLoader->getModule( $moduleName ) ) {
 			return true;

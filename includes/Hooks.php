@@ -71,7 +71,7 @@ class Hooks implements
 		}
 
 		$skin = strtolower( $sk->getSkinName() );
-		$prefix = $skin !== 'monaco' ? 'themeloader.' : '';
+		$prefix = 'themeloader.';
 		$moduleName = $prefix . "skins.$skin.$theme";
 		$script = $out->getResourceLoader()->getLoadScript( 'local' );
 

@@ -133,3 +133,6 @@ Version 3.3.2 - Nov 15, 2026
 
 Version 3.4 - Nov 21, 2026
 - Add global variable ´DisableSelectThemes´.
+
+Version 3.5 - Nov 21, 2026
+- Changes regarding skin ´Monaco´.

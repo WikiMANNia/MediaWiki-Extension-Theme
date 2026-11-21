@@ -36,13 +36,20 @@ Definir el tema predeterminado:
 
 : "DefaultTheme": "default",
 
-Schließe folgende Themen aus:
 
-Exclude the following themes:
+Einzelne Themen von der Auswahl in den Benutzereinstellungen ausnehmen:
 
-Excluir los siguientes temas:
+Exclude individual themes from the theme selection in user settings:
 
-: "SkipThemes": []
+Excluir temas individuales de la selección de temas en la configuración de usuario:
+
+´$wgSkipThemes['monobook'] = [
+		'pink' => true,
+		'stellarbook' => true
+	];´
+´$wgSkipThemes['vector'] = [
+		'dark' => true
+	];´
 
 ´SkipThemes´ kann nun aber - unbeabsichtigt - dazu führen, dass das ´DefaultTheme´ gar nicht mehr zu den zugelassenen Themen gehört.
 Es kann - optional - eine Ausweichalternative definiert werden:

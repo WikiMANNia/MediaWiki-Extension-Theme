@@ -1,7 +1,7 @@
 {
 	"name": "Theme",
 	"namemsg": "theme-extensionname",
-	"version": "3.3.2",
+	"version": "3.3.3",
 	"author": [
 		"Ryan Schmidt",
 		"Jack Phoenix",
@@ -11,17 +11,7 @@
 	"descriptionmsg": "theme-desc",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.39.0"
-	},
-	"config": {
-		"DefaultTheme": {
-			"type": "string",
-			"value": "default"
-		},
-		"SkipThemes": {
-			"type": "array",
-			"value": []
-		}
+		"MediaWiki": ">= 1.37.0"
 	},
 	"callback": "MediaWiki\\Extension\\Theme\\Hooks::onRegistration",
 	"MessagesDirs": {
@@ -42,8 +32,7 @@
 		"themelist": {
 			"class": "MediaWiki\\Extension\\Theme\\ApiThemeList",
 			"services": [
-				"SkinFactory",
-				"LanguageNameUtils"
+				"SkinFactory"
 			]
 		}
 	},

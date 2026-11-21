@@ -13,13 +13,14 @@ use MediaWiki\Hook\OutputPageBodyAttributesHook;
  * Keep the old imports until the aliases are removed from MediaWiki core.
  *
  * - use MediaWiki\Output\Hook\BeforePageDisplayHook;
- *  -use MediaWiki\Output\Hook\OutputPageBodyAttributesHook;
+ * - use MediaWiki\Output\Hook\OutputPageBodyAttributesHook;
 */
 
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Skin\Skin;
@@ -102,7 +103,7 @@ class Hooks implements
 	 *
 	 * @param OutputPage $out
 	 */
-	private function addJSonPreferences( $out ): void {
+	private function addJSonPreferences( OutputPage $out ): void {
 		if (
 			$out->getTitle()->isSpecial( 'Preferences' ) ||
 			$out->getTitle()->isSpecial( 'GlobalPreferences' )
@@ -121,40 +122,39 @@ class Hooks implements
 	 */
 	public function onGetPreferences( $user, &$defaultPreferences ) {
 		$ctx = RequestContext::getMain();
-		$skin = $ctx->getSkin()->getSkinName();
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		$skinName = $ctx->getSkin()->getSkinName();
 
-		$themes = Theme::getAvailableThemes( $skin );
+		$themes = Theme::getAvailableThemes( $skinName );
 		// Braindead code needed to make the theme *names* show up
 		// Without this they show up as "0", "1", etc. in the UI
 		$themeArray = [];
-		foreach ( $themes as $theme ) {
-			$msg_key = ( $theme === 'default' )
-				? "theme-name-default"
-				: "theme-name-$skin-$theme";
+		foreach ( $themes as $themeKey ) {
+			$msg_key = ( $themeKey === 'default' )
+				?	"theme-name-default"
+				:	"theme-name-{$skinName}-{$themeKey}";
 			$themeDisplayNameMsg = $ctx->msg( $msg_key );
 			if ( $themeDisplayNameMsg->isDisabled() ) {
 				// No i18n available for this -> use the key as-is
-				$themeDisplayName = ucfirst( $theme );
+				$themeDisplayName = ucfirst( $themeKey );
 			} else {
 				// Use i18n; it's much nicer to display formatted theme names if and when
 				// a theme name contains spaces, uppercase characters, etc.
 				$themeDisplayName = $themeDisplayNameMsg->text();
 			}
-			$themeArray[$themeDisplayName] = $theme;
+			$themeArray[$themeDisplayName] = $themeKey;
 		}
 
 		$skinsWithThemes = Theme::getSkinsWithThemes(
-				$this->skinFactory->getInstalledSkins()
+				$this->skinFactory->getInstalledSkins() // @since 1.37
 			);
 		$showIf = [ 'OR' ];
-		foreach ( $skinsWithThemes as $skin ) {
-			$showIf[] = [ '===', 'skin', $skin ];
+		foreach ( $skinsWithThemes as $skinName ) {
+			$showIf[] = [ '===', 'skin', $skinName ];
 		}
 
-		$defaultTheme = $ctx->getConfig()->get( 'DefaultTheme' );
-		if ( empty( $defaultTheme ) ) {
-			$defaultSkin = 'default';
-		}
+		$defaultTheme = Theme::getDefaultTheme( $skinName, 'default' );
 		$defaultTheme = $this->userOptionsLookup->getOption( $user, 'theme', $defaultTheme );
 		$defaultPreferences['theme'] = [
 			'type' => 'select',
@@ -214,19 +214,22 @@ class Hooks implements
 	 * @return string Name of the theme
 	 */
 	private function getTheme( OutputPage $context ): string {
+
+		$skinName = $context->getSkin()->getSkinName();
+		$defaultTheme = Theme::getDefaultTheme( $skinName, 'default' );
+
 		// Check the following things in this order:
 		// 1) per-page usetheme URL parameter
 		// 2) user's personal preference/override
 		// 3) value of $wgDefaultTheme (set in site configuration)
 		$theme = $context->getRequest()->getRawVal( 'usetheme' )
 			?? $this->userOptionsLookup->getOption( $context->getUser(), 'theme' )
-			?? $context->getConfig()->get( 'DefaultTheme' );
+			?? $defaultTheme;
 
 		// Support any case of the theme name.
 		$theme = strtolower( $theme );
 
 		// Fall back to 'default' if the skin has no theme with this theme name.
-		$skinName = $context->getSkin()->getSkinName();
 		$resourceLoader = $context->getOutput()->getResourceLoader();
 		if ( !Theme::skinHasTheme( $skinName, $theme, $resourceLoader ) ) {
 			$theme = 'default';
@@ -234,5 +237,4 @@ class Hooks implements
 
 		return $theme;
 	}
-
 }

@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\Theme;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiResult;
-use MediaWiki\Languages\LanguageNameUtils;
 use SkinFactory;
 
 /**
@@ -20,23 +19,19 @@ use SkinFactory;
 class ApiThemeList extends ApiBase {
 
 	private SkinFactory $skinFactory;
-	private LanguageNameUtils $languageNameUtils;
 
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
 	 * @param SkinFactory $skinFactory
-	 * @param LanguageNameUtils $languageNameUtils
 	 */
 	public function __construct(
 		ApiMain $main,
 		$action,
-		SkinFactory $skinFactory,
-		LanguageNameUtils $languageNameUtils
+		SkinFactory $skinFactory
 	) {
 		parent::__construct( $main, $action );
 		$this->skinFactory = $skinFactory;
-		$this->languageNameUtils = $languageNameUtils;
 	}
 
 	/**
@@ -50,41 +45,32 @@ class ApiThemeList extends ApiBase {
 	 * @param string $property
 	 * @return bool
 	 */
-	private function appendThemes( $property = 'themes' ): bool {
-		const DEFAULT = 'default';
+	private function appendThemes( string $property = 'themes' ): bool {
 		$data = [];
 		$config = $this->getConfig();
 		$defaultSkin = $config->get( 'DefaultSkin' );
-		$defaultTheme =
-			$this->config->has( 'DefaultTheme' )
-			? $this->config->get( 'DefaultTheme' )
-			: DEFAULT;
-		$skinNames = $this->skinFactory->getInstalledSkins();
+		$skinNames = $this->skinFactory->getInstalledSkins(); // @since 1.37
 
-		foreach ( $skinNames as $skin => $displayName ) {
-			$themes = Theme::getAvailableThemes( $skin );
+		foreach ( $skinNames as $skinName => $displayName ) {
+			$themes = Theme::getAvailableThemes( $skinName );
+			$defaultTheme = Theme::getDefaultTheme( $skinName, 'default' );
 			// When this stuff is in core, use:
-			// $themes = Skin::getAvailableThemes( $skin );
+			// $themes = Skin::getAvailableThemes( $skinName );
 			foreach ( $themes as $idx => $themeKey ) {
-				$msg = $this->msg( "theme-name-{$skin}-{$themeKey}" );
-				// added @ because I was getting
-				// Notice: Undefined index: inlanguagecode in ../includes/api/ApiBase.php on line 879
-				// on my 1.34alpha devbox; that is not a problem with the code in
-				// https://gerrit.wikimedia.org/r/465451/
-				// @phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-				$code = @$this->getParameter( 'inlanguagecode' );
-				if ( $code && $this->languageNameUtils->isValidCode( $code ) ) {
-					$msg->inLanguage( $code );
-				} else {
-					$msg->inContentLanguage();
-				}
-				$themeDisplayName = $msg->exists() ? $msg->text() : $themeKey;
+				$msg_key = ( $themeKey === 'default' )
+					?	"theme-name-default"
+					:	"theme-name-{$skinName}-{$themeKey}";
+				$themeDisplayNameMsg = $this->msg( $msg_key );
+				$themeDisplayNameMsg->inLanguage( $this->getLanguage() );
+				$themeDisplayName = $themeDisplayNameMsg->isDisabled()
+					?	ucfirst( $themeKey )
+					:	$themeDisplayNameMsg->text();
 				$theme = [ 'code' => $themeKey ];
 				ApiResult::setContentValue( $theme, 'name', $themeDisplayName );
-				if ( ( $themeKey === $defaultTheme ) && ( $skin === $defaultSkin ) ) {
-					$theme[DEFAULT] = true;
+				if ( ( $themeKey === $defaultTheme ) && ( $skinName === $defaultSkin ) ) {
+					$theme['default'] = true;
 				}
-				$data[$skin][] = $theme;
+				$data[$skinName][] = $theme;
 			}
 		}
 		ApiResult::setIndexedTagName( $data, 'theme' );
@@ -96,7 +82,7 @@ class ApiThemeList extends ApiBase {
 	 * @see ApiBase#getAllowedParams()
 	 * @return array
 	 */
-	public function getAllowedParams() {
+	public function getAllowedParams(): array {
 		return [];
 	}
 
@@ -104,7 +90,7 @@ class ApiThemeList extends ApiBase {
 	 * @see ApiBase#getExamplesMessages()
 	 * @return array
 	 */
-	protected function getExamplesMessages() {
+	protected function getExamplesMessages(): array {
 		return [
 			'action=themelist' => 'apihelp-themelist-example-1'
 		];

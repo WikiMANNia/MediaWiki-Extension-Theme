@@ -35,7 +35,10 @@ class Theme {
 		array_unshift( $themes[$ourSkin], 'default' );
 
 		// Filter out the themes defined in $wgSkipThemes for a skin, if any
-		$skipThemes = MediaWikiServices::getInstance()->getMainConfig()->get( 'SkipThemes' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$skipThemes = $config->has( 'SkipThemes' )
+				?	$config->get( 'SkipThemes' )
+				:	[];
 
 		if ( !is_array( $skipThemes ) ) {
 			wfLogWarning(
@@ -48,10 +51,16 @@ class Theme {
 			$skipThemes[$ourSkin] = [];
 		}
 
-		foreach ( $skipThemes[$ourSkin] as $skippable ) {
-			unset( $themes[$ourSkin][$skippable] );
+		foreach ( $skipThemes[$ourSkin] as $skippable => $value ) {
+
+			$key = array_search( $skippable, $themes[$ourSkin], true );
+
+			if ( ( $key !== false ) && ( $value === true ) ) {
+				unset( $themes[$ourSkin][$key] );
+			}
 		}
 
+		// Fallback to 'default' to prevent an empty theme selection
 		return !empty( $themes[$ourSkin] ) ? $themes[$ourSkin] : [ 'default' => 'default' ];
 	}
 
@@ -146,7 +155,7 @@ class Theme {
 	 * @param array $skins Array with all skin names (skin key -> i18ned/human-friendly name)
 	 * @return array Array containing skin names which supports themes
 	 */
-	public static function getSkinsWithThemes( $skins ): array {
+	public static function getSkinsWithThemes( array $skins ): array {
 		// We only want the internal values, not the potentially i18n'ed (or CamelCased or
 		// whatever), human-friendly names
 		$skins = array_keys( $skins );
@@ -162,5 +171,4 @@ class Theme {
 
 		return $skinsWithThemes;
 	}
-
 }

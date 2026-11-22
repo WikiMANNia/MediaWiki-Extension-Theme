@@ -136,3 +136,20 @@ Version 3.4 - Nov 21, 2026
 
 Version 3.5 - Nov 21, 2026
 - Changes regarding skin ´Monaco´.
+
+Version 3.6 - Nov 22, 2026
+- The code
+´$theme = $context->getRequest()->getRawVal( 'usetheme' )
+	?? $this->userOptionsLookup->getOption( $context->getUser(), 'theme' )
+	?? $defaultTheme;´
+had to be revised because the return value always needs to be checked if it is in the list of allowed themes.
+
+- The code
+´// Fall back to 'default' if the skin has no theme with this theme name.
+		$resourceLoader = $context->getOutput()->getResourceLoader();
+		if ( !Theme::skinHasTheme( $skinName, $theme, $resourceLoader ) ) {
+			$theme = 'default';
+		}´
+had to be disabled due of the ´DisableSelectThemes´ function.
+The ´skinHasTheme´ function now returns ´false´ not only when the skin actually has no themes, but also when theme selection is completely disabled or all available themes are in the skip list.
+In this case, ´$theme´ should be set to ´$wgDefaultTheme´ and not to 'default'.

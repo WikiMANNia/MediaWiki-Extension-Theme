@@ -20,14 +20,9 @@ class ApiThemeList extends ApiBase {
 
 	private SkinFactory $skinFactory;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param SkinFactory $skinFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		SkinFactory $skinFactory
 	) {
 		parent::__construct( $main, $action );

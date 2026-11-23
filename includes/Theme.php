@@ -158,9 +158,10 @@ class Theme {
 
 		$skipThemes = self::getSkipThemes();
 		if ( isset( $skipThemes[$skin] ) &&
-			isset( $skipThemes[$skin][$theme] ) ) {
+			isset( $skipThemes[$skin][$theme] ) &&
+			is_bool( $skipThemes[$skin][$theme] ) ) {
 			// This theme for this skin is explicitly disabled in the site's configuration.
-			return $skipThemes[$skin][$theme];
+			return !$skipThemes[$skin][$theme];
 		}
 
 		$moduleName = 'themeloader.skins.' . $skin . '.' . $theme;

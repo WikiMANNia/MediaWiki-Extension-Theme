@@ -22,9 +22,9 @@ The extension supports themes and is used by theme-supporting skins.
 
 La extensión admite temas y es utilizada por las apariencias que los admiten.
 
-- El tema visual ´cologneblue´ incluirá el tema ´partybook´.
-- El tema visual ´monobook´ incluirá los temas ´dark´, ´pink´, ´stellarbook´ y ´wipi´.
-- El tema visual ´vector´ incluirá los temas ´dark´, ´deepsea´ y ´dark-grey´.
+- La apariencia visual ´cologneblue´ incluirá el tema ´partybook´.
+- La apariencia visual ´monobook´ incluirá los temas ´dark´, ´pink´, ´stellarbook´ y ´wipi´.
+- La apariencia visual ´vector´ incluirá los temas ´dark´, ´deepsea´ y ´dark-grey´.
 
 ## Configuration
 

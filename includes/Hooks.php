@@ -143,8 +143,8 @@ class Hooks implements
 		$installedSkins = $this->skinFactory->getInstalledSkins(); // @since 1.37
 		$skinsWithThemes = Theme::getSkinsWithThemes( $installedSkins );
 		$showIf = [ 'OR' ];
-		foreach ( $skinsWithThemes as $skinName ) {
-			$showIf[] = [ '===', 'skin', $skinName ];
+		foreach ( $skinsWithThemes as $skin_name ) {
+			$showIf[] = [ '===', 'skin', $skin_name ];
 		}
 
 		$defaultTheme = Theme::getDefaultTheme( $skinName, 'default' );

@@ -73,9 +73,21 @@ class Theme {
 		$fallbackTheme = $config->has( 'FallbackTheme' )
 				? $config->get( 'FallbackTheme' )
 				: $hardcodedFallback;
+		// old style for backward compatibility
 		$defaultTheme = $config->has( 'DefaultTheme' )
 				? $config->get( 'DefaultTheme' )
 				: $fallbackTheme;
+		// new style: Per-Skin Default Theme
+		$defaultThemes = $config->has( 'DefaultThemes' )
+				? $config->get( 'DefaultThemes' )
+				: [];
+
+		if ( is_array( $defaultThemes ) && is_string( $defaultThemes[$ourSkin] ) ) {
+			$defaultTheme = $defaultThemes[$ourSkin];
+		}
+		elseif ( is_string( $defaultThemes ) ) {
+			$defaultTheme = $defaultThemes;
+		}
 
 		// Validate default theme
 		if (

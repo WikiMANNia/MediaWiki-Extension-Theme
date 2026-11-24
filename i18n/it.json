@@ -6,5 +6,9 @@
 		]
 	},
 	"theme-prefs-label": "Tema:",
-	"theme-desc": "Controlla l'installazione di varianti CSS per il tema del wiki"
+	"theme-desc": "Controlla l'installazione di varianti CSS per il tema del wiki",
+	"theme-unsupported-skin": "Questo tema, che stai attualmente utilizzando o che hai selezionato per l'attivazione, non supporta alcun tema oppure la selezione dei temi è stata disabilitata in LocalSettings.php.",
+	"theme-name-monobook-stellarbook": "Libro stellare",
+	"theme-name-vector-deepsea": "Mare profondo",
+	"theme-name-default": "predefinito"
 }

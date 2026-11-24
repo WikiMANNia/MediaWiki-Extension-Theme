@@ -4,14 +4,15 @@
 			"Dgstranz",
 			"Jakeukalane",
 			"Macofe",
-			"WikiForMen"
+			"WikiMANNia"
 		]
 	},
 	"theme-extensionname": "Theme",
 	"theme-prefs-label": "Tema:",
 	"theme-desc": "Controla la instalación de variantes CSS de las apariencias de la wiki",
-	"theme-livepreview-note": "Tenga en cuenta que solo está viendo una vista previa del tema $1. Para guardar los cambios de forma permanente, haga clic en el botón «Guardar» que aparece a continuación.",
-	"theme-unsupported-skin": "Esta apariencia, que es la que está utilizando o la que ha seleccionado para su activación, no admite temas. Si desea usar un tema diferente al predeterminado, utilice otra apariencia.",
+	"theme-livepreview-note": "Tenga en cuenta que solo está viendo una vista previa del tema «$1». Para guardar los cambios de forma permanente, haga clic en el botón «Guardar» que aparece a continuación.",
+	"theme-unsupported-skin": "Esta apariencia, que estás utilizando actualmente o que has seleccionado para su activación, no admite ningún tema o bien la selección de sus temas se ha deshabilitado en LocalSettings.php.",
+	"theme-name-cologneblue-partybook": "Libreta de afiliación al partido",
 	"theme-name-monobook-dark": "Oscuro",
 	"theme-name-monobook-pink": "Rosa",
 	"theme-name-monobook-stellarbook": "Libro estelar",

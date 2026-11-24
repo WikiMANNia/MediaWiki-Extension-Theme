@@ -34,7 +34,10 @@ Define the default theme:
 
 Definir el tema predeterminado:
 
-: ´$wgDefaultTheme = 'default';´
+: ´$wgDefaultTheme = 'default';´	// old style for backward compatibility
+
+: ´$wgDefaultThemes['skinname1'] = 'themename1';´
+: ´$wgDefaultThemes['skinname2'] = 'themename2';´
 
 
 Einzelne Themen von der Auswahl in den Benutzereinstellungen ausnehmen:
@@ -153,3 +156,6 @@ had to be revised because the return value always needs to be checked if it is i
 had to be disabled due of the ´DisableSelectThemes´ function.
 The ´skinHasTheme´ function now returns ´false´ not only when the skin actually has no themes, but also when theme selection is completely disabled or all available themes are in the skip list.
 In this case, ´$theme´ should be set to ´$wgDefaultTheme´ and not to 'default'.
+
+Version 3.7 - Nov 23, 2026
+- Add global variable ´$wgDefaultThemes´ for 'per-skin' default themes

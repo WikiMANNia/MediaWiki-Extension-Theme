@@ -211,24 +211,43 @@ class Hooks implements
 	private function getTheme( $context ) {
 
 		$skinName = $context->getSkin()->getSkinName();
-		$defaultTheme = Theme::getDefaultTheme( $skinName, 'default' );
+		$fallbackTheme = 'default';
+		$defaultTheme = Theme::getDefaultTheme( $skinName, $fallbackTheme );
+		$theme = $defaultTheme;
 
-		// Check the following things in this order:
-		// 1) per-page usetheme URL parameter
-		// 2) user's personal preference/override
-		// 3) value of $wgDefaultTheme (set in site configuration)
-		$theme = $context->getRequest()->getRawVal( 'usetheme' )
-			?? $this->userOptionsLookup->getOption( $context->getUser(), 'theme' )
-			?? $defaultTheme;
+		$disableSelectThemes = Theme::isDisabledSelectThemes( $skinName );
+		if ( !$disableSelectThemes ) {
+			$availableThemes = Theme::getAvailableThemes( $skinName );
+			$themeFromRequest = $context->getRequest()->getRawVal( 'usetheme' );
+			$themeFromLookup = $this->userOptionsLookup->getOption( $context->getUser(), 'theme' );
 
-		// Support any case of the theme name.
-		$theme = strtolower( $theme );
+			// Check the following things in this order:
+			// 1) per-page usetheme URL parameter
+			// 2) user's personal preference/override
+			// 3) value of $wgDefaultTheme (set in site configuration)
+			if ( in_array( $themeFromRequest, $availableThemes, true ) ) {
+				$theme = $themeFromRequest;
+			} elseif ( in_array( $themeFromLookup, $availableThemes, true ) ) {
+				$theme = $themeFromLookup;
+			} elseif ( in_array( $defaultTheme, $availableThemes, true ) ) {
+				$theme = $defaultTheme;
+			} else {
+				$theme = $fallbackTheme;
+			}
+		}
 
 		// Fall back to 'default' if the skin has no theme with this theme name.
-		$resourceLoader = $context->getOutput()->getResourceLoader();
-		if ( !Theme::skinHasTheme( $skinName, $theme, $resourceLoader ) ) {
-			$theme = 'default';
-		}
+#		$resourceLoader = $context->getOutput()->getResourceLoader();
+#		if ( !Theme::skinHasTheme( $skinName, $theme, $resourceLoader ) ) {
+#			$theme = 'default';
+#		}
+		// There is confusion regarding 'default' because the term has two meanings.
+		// #1 - It refers to the skin in its "original state" without any additional CSS resources from a theme.
+		// #2 - It refers to the theme preselected in LocalSettings.php via $wgDefaultTheme.
+		// The situation became more complex with the introduction of the 'DisableSelectThemes' function.
+		// The skinHasTheme function now returns false, A) if the skin actually has no themes.
+		// B) if theme selection is completely disabled or all themes are on the skip list.
+		// If 'DisableSelectThemes' is enabled, the preselected $wgDefaultTheme should be used, not 'default'.
 
 		return $theme;
 	}

@@ -35,10 +35,7 @@ class Theme {
 		array_unshift( $themes[$ourSkin], 'default' );
 
 		// Filter out the themes defined in $wgSkipThemes for a skin, if any
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$skipThemes = $config->has( 'SkipThemes' )
-				?	$config->get( 'SkipThemes' )
-				:	[];
+		$skipThemes = self::getSkipThemes();
 
 		if ( !is_array( $skipThemes ) ) {
 			wfLogWarning(
@@ -108,6 +105,16 @@ class Theme {
 	}
 
 	/**
+	 * Gets the skiped themes.
+	 */
+	private static function getSkipThemes(): array {
+
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		return $config->has( 'SkipThemes' ) ? $config->get( 'SkipThemes' ) : [];
+	}
+
+	/**
 	 * @return bool
 	 */
 	public static function isDisabledSelectThemes( $skin ) {
@@ -149,15 +156,12 @@ class Theme {
 			return false;
 		}
 
-		$skipThemes = $config->get( 'SkipThemes' );
-		if ( !empty( $skipThemes[$skin] ) ) {
-			if (
-				isset( $skipThemes[$skin] ) && $skipThemes[$skin] &&
-				isset( $skipThemes[$skin][$theme] ) && $skipThemes[$skin][$theme]
-			) {
-				// This theme for this skin is explicitly disabled in the site's configuration.
-				return false;
-			}
+		$skipThemes = self::getSkipThemes();
+		if ( isset( $skipThemes[$skin] ) &&
+			isset( $skipThemes[$skin][$theme] ) &&
+			is_bool( $skipThemes[$skin][$theme] ) ) {
+			// This theme for this skin is explicitly disabled in the site's configuration.
+			return !$skipThemes[$skin][$theme];
 		}
 
 		$moduleName = 'themeloader.skins.' . $skin . '.' . $theme;

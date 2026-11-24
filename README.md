@@ -22,9 +22,9 @@ The extension supports themes and is used by theme-supporting skins.
 
 La extensión admite temas y es utilizada por las apariencias que los admiten.
 
-- El tema visual ´cologneblue´ incluirá el tema ´partybook´.
-- El tema visual ´monobook´ incluirá los temas ´dark´, ´pink´, ´stellarbook´ y ´wipi´.
-- El tema visual ´vector´ incluirá los temas ´dark´, ´deepsea´ y ´dark-grey´.
+- La apariencia ´cologneblue´ incluirá el tema ´partybook´.
+- La apariencia ´monobook´ incluirá los temas ´dark´, ´pink´, ´stellarbook´ y ´wipi´.
+- La apariencia ´vector´ incluirá los temas ´dark´, ´deepsea´ y ´dark-grey´.
 
 ## Configuration
 
@@ -34,15 +34,22 @@ Define the default theme:
 
 Definir el tema predeterminado:
 
-: "DefaultTheme": "default",
+: ´$wgDefaultTheme = 'default';´
 
-Schließe folgende Themen aus:
 
-Exclude the following themes:
+Einzelne Themen von der Auswahl in den Benutzereinstellungen ausnehmen:
 
-Excluir los siguientes temas:
+Exclude individual themes from the theme selection in user settings:
 
-: "SkipThemes": []
+Excluir temas individuales de la selección de temas en la configuración de usuario:
+
+´$wgSkipThemes['monobook'] = [
+		'pink' => true,
+		'stellarbook' => true
+	];´
+´$wgSkipThemes['vector'] = [
+		'dark' => true
+	];´
 
 ´SkipThemes´ kann nun aber - unbeabsichtigt - dazu führen, dass das ´DefaultTheme´ gar nicht mehr zu den zugelassenen Themen gehört.
 Es kann - optional - eine Ausweichalternative definiert werden:
@@ -53,7 +60,17 @@ Optionally, an alternative theme can be defined:
 Sin embargo, usar ´SkipThemes´ puede provocar involuntariamente que ´DefaultTheme´ deje de estar entre los temas permitidos.
 Opcionalmente, se puede definir un tema alternativo:
 
-: "FallbackTheme": "default",
+: ´$wgFallbackTheme = 'default';´
+
+
+Die Auswahl der Themen in den Benutzereinstellungen deaktivieren:
+
+Disable theme selection in user settings:
+
+Deshabilitar la selección de temas en la configuración de usuario:
+
+- $wgDisableSelectThemes['monaco'] = true;
+- $wgDisableSelectThemes['monobook'] = true;
 
 ## Compatibility
 
@@ -113,3 +130,6 @@ Version 3.3.1 - Oct 30, 2026
 Version 3.3.2 - Nov 15, 2026
 - Throwing an InvalidArgumentException is to much at this point. A warning will be good enough.
 - Add function ´getDefaultTheme()´ to handle global variables ´DefaultTheme´ and ´FallbackTheme´.
+
+Version 3.4 - Nov 21, 2026
+- Add global variable ´DisableSelectThemes´.

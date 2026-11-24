@@ -17,34 +17,6 @@ class Compat {
 				'MediaWiki\\ResourceLoader\\ResourceLoader'
 			);
 		}
-		if ( class_exists( \Html::class ) && /* < 1.40 */
-			!class_exists( 'MediaWiki\\Html\\Html', false ) ) {
-			class_alias(
-				\Html::class,
-				'MediaWiki\\Html\\Html'
-			);
-		}
-		if ( class_exists( \Linker::class ) && /* < 1.40 */
-			!class_exists( 'MediaWiki\\Linker\\Linker', false ) ) {
-			class_alias(
-				\Linker::class,
-				'MediaWiki\\Linker\\Linker'
-			);
-		}
-		if ( class_exists( \Title::class ) && /* < 1.40 */
-			!class_exists( 'MediaWiki\\Title\\Title', false ) ) {
-			class_alias(
-				\Title::class,
-				'MediaWiki\\Title\\Title'
-			);
-		}
-		if ( class_exists( \Config::class ) && /* < 1.41 */
-			!class_exists( 'MediaWiki\\Config\\Config', false ) ) {
-			class_alias(
-				\Config::class,
-				'MediaWiki\\Config\\Config'
-			);
-		}
 		if ( class_exists( \GlobalVarConfig::class ) && /* < 1.41 */
 			!class_exists( 'MediaWiki\\Config\\GlobalVarConfig', false ) ) {
 			class_alias(
@@ -52,11 +24,25 @@ class Compat {
 				'MediaWiki\\Config\\GlobalVarConfig'
 			);
 		}
+		if ( class_exists( \OutputPage::class ) && /* < 1.41 */
+			!class_exists( \MediaWiki\Output\OutputPage::class, false ) ) {
+			class_alias(
+				\OutputPage::class,
+				\MediaWiki\Output\OutputPage::class
+			);
+		}
 		if ( class_exists( \Sanitizer::class ) && /* < 1.41 */
 			!class_exists( 'MediaWiki\\Parser\\Sanitizer', false ) ) {
 			class_alias(
 				\Sanitizer::class,
 				'MediaWiki\\Parser\\Sanitizer'
+			);
+		}
+		if ( class_exists( \User::class ) && /* < 1.41 */
+			!class_exists( 'MediaWiki\\User\\User', false ) ) {
+			class_alias(
+				\User::class,
+				'MediaWiki\\User\\User'
 			);
 		}
 		if ( class_exists( \RequestContext::class ) && /* < 1.42 */
@@ -120,13 +106,6 @@ class Compat {
 			class_alias(
 				\ExtensionRegistry::class,
 				'MediaWiki\\Registration\\ExtensionRegistry'
-			);
-		}
-		if ( class_exists( \BaseTemplate::class ) && /* < 1.44 */
-			!class_exists( 'MediaWiki\\Skin\\BaseTemplate', false ) ) {
-			class_alias(
-				\BaseTemplate::class,
-				'MediaWiki\\Skin\\BaseTemplate'
 			);
 		}
 		if ( class_exists( \Skin::class ) && /* < 1.44 */

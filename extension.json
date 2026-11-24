@@ -1,7 +1,7 @@
 {
 	"name": "Theme",
 	"namemsg": "theme-extensionname",
-	"version": "3.3.2",
+	"version": "3.4",
 	"author": [
 		"Ryan Schmidt",
 		"Jack Phoenix",
@@ -13,27 +13,26 @@
 	"requires": {
 		"MediaWiki": ">= 1.35.0"
 	},
-	"config": {
-		"DefaultTheme": "default",
-		"SkipThemes": []
-	},
 	"callback": "MediaWiki\\Extension\\Theme\\Hooks::onRegistration",
 	"MessagesDirs": {
 		"Theme": [
 			"i18n"
 		]
 	},
-	"ThemeModules": {
-		"cologneblue": [ "partybook" ],
-		"monobook": [ "dark", "pink", "stellarbook", "wipi" ],
-		"vector": [ "dark", "dark-grey", "deepsea" ]
+	"attributes": {
+		"Theme": {
+			"Modules": {
+				"cologneblue": [ "partybook" ],
+				"monobook": [ "dark", "pink", "stellarbook", "wipi" ],
+				"vector": [ "dark", "dark-grey", "deepsea" ]
+			}
+		}
 	},
 	"APIModules": {
 		"themelist": {
 			"class": "MediaWiki\\Extension\\Theme\\ApiThemeList",
 			"services": [
-				"SkinFactory",
-				"LanguageNameUtils"
+				"SkinFactory"
 			]
 		}
 	},
@@ -137,7 +136,7 @@
 		"remoteExtPath": "Theme"
 	},
 	"HookHandlers": {
-		"ThemeHooks": {
+		"main": {
 			"class": "MediaWiki\\Extension\\Theme\\Hooks",
 			"services": [
 				"SkinFactory",
@@ -146,10 +145,10 @@
 		}
 	},
 	"Hooks": {
-		"BeforePageDisplay": "ThemeHooks",
-		"GetPreferences": "ThemeHooks",
-		"OutputPageBodyAttributes": "ThemeHooks",
-		"ResourceLoaderGetConfigVars": "ThemeHooks"
+		"BeforePageDisplay": "main",
+		"GetPreferences": "main",
+		"OutputPageBodyAttributes": "main",
+		"ResourceLoaderGetConfigVars": "main"
 	},
-	"manifest_version": 1
+	"manifest_version": 2
 }

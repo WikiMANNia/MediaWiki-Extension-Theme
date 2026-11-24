@@ -8,6 +8,7 @@ use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Skin\Skin;
@@ -21,16 +22,19 @@ class Hooks implements
 	OutputPageBodyAttributesHook,
 	ResourceLoaderGetConfigVarsHook
 {
-	private SkinFactory $skinFactory;
-	private UserOptionsLookup $userOptionsLookup;
+	/** @var SkinFactory */
+	private $skinFactory;
+
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
 
 	/**
 	 * @param SkinFactory $skinFactory
 	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
-		SkinFactory $skinFactory,
-		UserOptionsLookup $userOptionsLookup
+		$skinFactory,
+		$userOptionsLookup
 	) {
 		$this->skinFactory = $skinFactory;
 		$this->userOptionsLookup = $userOptionsLookup;
@@ -109,43 +113,43 @@ class Hooks implements
 	 */
 	public function onGetPreferences( $user, &$defaultPreferences ) {
 		$ctx = RequestContext::getMain();
-		$skin = $ctx->getSkin()->getSkinName();
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		$skinName = $ctx->getSkin()->getSkinName();
 
-		$themes = Theme::getAvailableThemes( $skin );
+		$themes = Theme::getAvailableThemes( $skinName );
 		// Braindead code needed to make the theme *names* show up
 		// Without this they show up as "0", "1", etc. in the UI
 		$themeArray = [];
-		foreach ( $themes as $theme ) {
-			$msg_key = ( $theme === 'default' )
-				? "theme-name-default"
-				: "theme-name-$skin-$theme";
+		foreach ( $themes as $themeKey ) {
+			$msg_key = ( $themeKey === 'default' )
+				?	"theme-name-default"
+				:	"theme-name-{$skinName}-{$themeKey}";
 			$themeDisplayNameMsg = $ctx->msg( $msg_key );
 			if ( $themeDisplayNameMsg->isDisabled() ) {
 				// No i18n available for this -> use the key as-is
-				$themeDisplayName = ucfirst( $theme );
+				$themeDisplayName = ucfirst( $themeKey );
 			} else {
 				// Use i18n; it's much nicer to display formatted theme names if and when
 				// a theme name contains spaces, uppercase characters, etc.
 				$themeDisplayName = $themeDisplayNameMsg->text();
 			}
-			$themeArray[$themeDisplayName] = $theme;
+			$themeArray[$themeDisplayName] = $themeKey;
 		}
 
-		$skinsWithThemes = Theme::getSkinsWithThemes(
-				method_exists( $this->skinFactory, 'getInstalledSkins' )
-				// @phan-suppress-next-line PhanUndeclaredMethod
-				? $this->skinFactory->getInstalledSkins()
-				: $this->skinFactory->getSkinNames()
-			);
+		$installedSkins =
+			method_exists( $this->skinFactory, 'getInstalledSkins' )
+				?	// @since 1.37
+					$this->skinFactory->getInstalledSkins()
+				:	// @phan-suppress-next-line PhanUndeclaredMethod
+					$this->skinFactory->getSkinNames();
+		$skinsWithThemes = Theme::getSkinsWithThemes( $installedSkins );
 		$showIf = [ 'OR' ];
-		foreach ( $skinsWithThemes as $skin ) {
-			$showIf[] = [ '===', 'skin', $skin ];
+		foreach ( $skinsWithThemes as $skin_name ) {
+			$showIf[] = [ '===', 'skin', $skin_name ];
 		}
 
-		$defaultTheme = $ctx->getConfig()->get( 'DefaultTheme' );
-		if ( empty( $defaultTheme ) ) {
-			$defaultSkin = 'default';
-		}
+		$defaultTheme = Theme::getDefaultTheme( $skinName, 'default' );
 		$defaultTheme = $this->userOptionsLookup->getOption( $user, 'theme', $defaultTheme );
 		$defaultPreferences['theme'] = [
 			'type' => 'select',
@@ -194,30 +198,33 @@ class Hooks implements
 	 * @param Config $config
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderGetConfigVars( array &$vars, $skin, $config ): void {
+	public function onResourceLoaderGetConfigVars( &$vars, $skin, $config ): void {
 		$vars['wgDefaultTheme'] = $config->get( 'DefaultTheme' );
 	}
 
 	/**
-	 * Detect the theme
+	 * Detect the theme and return its name
 	 *
 	 * @param OutputPage $context
-	 * @return string Name of the theme
+	 * @return string
 	 */
-	private function getTheme( OutputPage $context ): string {
+	private function getTheme( $context ) {
+
+		$skinName = $context->getSkin()->getSkinName();
+		$defaultTheme = Theme::getDefaultTheme( $skinName, 'default' );
+
 		// Check the following things in this order:
 		// 1) per-page usetheme URL parameter
 		// 2) user's personal preference/override
 		// 3) value of $wgDefaultTheme (set in site configuration)
 		$theme = $context->getRequest()->getRawVal( 'usetheme' )
 			?? $this->userOptionsLookup->getOption( $context->getUser(), 'theme' )
-			?? $context->getConfig()->get( 'DefaultTheme' );
+			?? $defaultTheme;
 
 		// Support any case of the theme name.
 		$theme = strtolower( $theme );
 
 		// Fall back to 'default' if the skin has no theme with this theme name.
-		$skinName = $context->getSkin()->getSkinName();
 		$resourceLoader = $context->getOutput()->getResourceLoader();
 		if ( !Theme::skinHasTheme( $skinName, $theme, $resourceLoader ) ) {
 			$theme = 'default';
@@ -225,5 +232,4 @@ class Hooks implements
 
 		return $theme;
 	}
-
 }

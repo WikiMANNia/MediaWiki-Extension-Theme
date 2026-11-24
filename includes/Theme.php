@@ -21,7 +21,7 @@ class Theme {
 	 * @return array Array containing theme names for the skin or 'default' if
 	 *               the skin has no custom themes available
 	 */
-	public static function getAvailableThemes( string $ourSkin ): array {
+	public static function getAvailableThemes( $ourSkin ) {
 		// Paranoia
 		$ourSkin = strtolower( $ourSkin );
 
@@ -35,7 +35,10 @@ class Theme {
 		array_unshift( $themes[$ourSkin], 'default' );
 
 		// Filter out the themes defined in $wgSkipThemes for a skin, if any
-		$skipThemes = MediaWikiServices::getInstance()->getMainConfig()->get( 'SkipThemes' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$skipThemes = $config->has( 'SkipThemes' )
+				?	$config->get( 'SkipThemes' )
+				:	[];
 
 		if ( !is_array( $skipThemes ) ) {
 			wfLogWarning(
@@ -48,17 +51,23 @@ class Theme {
 			$skipThemes[$ourSkin] = [];
 		}
 
-		foreach ( $skipThemes[$ourSkin] as $skippable ) {
-			unset( $themes[$ourSkin][$skippable] );
+		foreach ( $skipThemes[$ourSkin] as $skippable => $value ) {
+
+			$key = array_search( $skippable, $themes[$ourSkin], true );
+
+			if ( ( $key !== false ) && ( $value === true ) ) {
+				unset( $themes[$ourSkin][$key] );
+			}
 		}
 
+		// Fallback to 'default' to prevent an empty theme selection
 		return !empty( $themes[$ourSkin] ) ? $themes[$ourSkin] : [ 'default' => 'default' ];
 	}
 
 	/**
 	 * Gets the default theme.
 	 */
-	public static function getDefaultTheme( string $ourSkin, string $hardcodedFallback ): string {
+	public static function getDefaultTheme( $ourSkin, $hardcodedFallback ) {
 
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
@@ -99,6 +108,21 @@ class Theme {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public static function isDisabledSelectThemes( $skin ) {
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		if ( $config->has( 'DisableSelectThemes' ) ) {
+			$disableSelectThemes = $config->get( 'DisableSelectThemes' );
+			if ( isset( $disableSelectThemes[$skin] ) ) {
+				return $disableSelectThemes[$skin];
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Check if the given skin has a theme named $theme and that it is usable
 	 * (i.e. NOT in the $wgSkipThemes configuration variable array).
 	 *
@@ -107,7 +131,10 @@ class Theme {
 	 * @param ResourceLoader $resourceLoader Reference to ResourceLoader
 	 * @return bool
 	 */
-	public static function skinHasTheme( string $skin, string $theme, ResourceLoader $resourceLoader ): bool {
+	public static function skinHasTheme( $skin, $theme, $resourceLoader ) {
+
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
 		$skin = strtolower( $skin );
 		$theme = strtolower( $theme );
 
@@ -117,7 +144,12 @@ class Theme {
 			return true;
 		}
 
-		$skipThemes = MediaWikiServices::getInstance()->getMainConfig()->get( 'SkipThemes' );
+		// The skin may provides themes but the selection of themes is disabled
+		if ( self::isDisabledSelectThemes( $skin ) ) {
+			return false;
+		}
+
+		$skipThemes = $config->get( 'SkipThemes' );
 		if ( !empty( $skipThemes[$skin] ) ) {
 			if (
 				isset( $skipThemes[$skin] ) && $skipThemes[$skin] &&
@@ -146,7 +178,7 @@ class Theme {
 	 * @param array $skins Array with all skin names (skin key -> i18ned/human-friendly name)
 	 * @return array Array containing skin names which supports themes
 	 */
-	public static function getSkinsWithThemes( $skins ): array {
+	public static function getSkinsWithThemes( $skins ) {
 		// We only want the internal values, not the potentially i18n'ed (or CamelCased or
 		// whatever), human-friendly names
 		$skins = array_keys( $skins );
@@ -155,12 +187,11 @@ class Theme {
 		$themes = ExtensionRegistry::getInstance()->getAttribute( 'ThemeModules' );
 
 		foreach ( $skins as $skin ) {
-			if ( isset( $themes[$skin] ) ) {
+			if ( isset( $themes[$skin] ) && !self::isDisabledSelectThemes( $skin ) ) {
 				$skinsWithThemes[] = $skin;
 			}
 		}
 
 		return $skinsWithThemes;
 	}
-
 }

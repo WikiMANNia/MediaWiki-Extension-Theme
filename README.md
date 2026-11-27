@@ -1,10 +1,10 @@
 # Theme
 
-Die Pflege dieses Forks der MediaWiki-Erweiterung [Theme](https://www.mediawiki.org/wiki/Extension:Theme/de) wird von WikiMANNia verwaltet.
+Die Pflege dieses Forks der MediaWiki-Erweiterung [Theme](https://wikimannia.org/mediawiki.org/Extension-Theme_(Fork).html) wird von WikiMANNia verwaltet.
 
-The maintenance of this fork of the MediaWiki extension [Theme](https://www.mediawiki.org/wiki/Extension:Theme) is managed by WikiMANNia.
+The maintenance of this fork of the MediaWiki extension [Theme](https://wikimannia.org/mediawiki.org/Extension-Theme_(Fork).html) is managed by WikiMANNia.
 
-El mantenimiento de esta bifurcación de la extensión de MediaWiki [Theme](https://www.mediawiki.org/wiki/Extension:Theme/es) está gestionado por WikiMANNia.
+El mantenimiento de esta bifurcación de la extensión de MediaWiki [Theme](https://wikimannia.org/mediawiki.org/Extension-Theme_(Fork).html) está gestionado por WikiMANNia.
 
 ## Description
 
